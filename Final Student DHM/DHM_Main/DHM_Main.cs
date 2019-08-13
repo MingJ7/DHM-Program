@@ -327,7 +327,7 @@ namespace DHM_Main {
 		private void filter_NewFrameHandler(object sender, NewFrameEvent e) {
 			UMat old = rawData;
 			rawData = e.transfer;
-			if (camView != null) camView.Display_Image(rawData);
+			camView?.Display_Image(rawData);
 			if (old != null) old.Dispose();
 			this.LoadImageToEnd(rawData);
 		}

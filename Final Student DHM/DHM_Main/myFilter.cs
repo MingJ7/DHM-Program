@@ -52,16 +52,23 @@ namespace DHM_Main {
 				//dest.CopyFrom(src);
 
 				IntPtr ptr = (IntPtr)src.Ptr;
+				//if the IntPtr casting was successful, if both pointers have the same address
 				if (ptr.ToPointer() == src.Ptr) {
+					//if input is Y800 format, or 8-bit bit-depth,
 					if (src.FrameType.Subtype.Equals(TIS.Imaging.MediaSubtypes.Y800)) {
+						//create mat header to manage data
 						Mat temp = new Mat(src.FrameType.Size, Emgu.CV.CvEnum.DepthType.Cv8U, 1, ptr, src.FrameType.BufferSize / src.FrameType.Height);
-			NewFrameHandler?.Invoke(this, new NewFrameEvent(temp.GetUMat(Emgu.CV.CvEnum.AccessType.Read)));
-						//temp.Dispose();
+						//raise event to send umat to newFrame event handler if there exists one
+						NewFrameHandler?.Invoke(this, new NewFrameEvent(temp.GetUMat(Emgu.CV.CvEnum.AccessType.ReadWrite)));
+						//the above creates a new UMat header with its own data 
+						//so we can dispose the Mat header.
+						temp.Dispose();
 					}
+					//if input is Y16 format or 16-bit bit-depth,
 					else if (src.FrameType.Subtype.Equals(TIS.Imaging.MediaSubtypes.Y16)) {
 						Mat temp = new Mat(src.FrameType.Size, Emgu.CV.CvEnum.DepthType.Cv16U, 1, ptr, src.FrameType.BufferSize / src.FrameType.Height);
-			NewFrameHandler?.Invoke(this, new NewFrameEvent(temp.GetUMat(Emgu.CV.CvEnum.AccessType.Read)));
-						//temp.Dispose();
+						NewFrameHandler?.Invoke(this, new NewFrameEvent(temp.GetUMat(Emgu.CV.CvEnum.AccessType.ReadWrite)));
+						temp.Dispose();
 					}
 				}
 			}
