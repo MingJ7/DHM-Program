@@ -275,7 +275,6 @@ namespace DHM_Main {
 				try {
 					rawData = new UMat(openFileDialog.FileName, Emgu.CV.CvEnum.ImreadModes.Grayscale);
 					camView.Update_Image_Size(rawData.Size);
-					camView.Display_Image(rawData);
 					LoadImageToEnd(rawData);
 				}
 				catch (ArgumentException) {
@@ -327,7 +326,6 @@ namespace DHM_Main {
 		private void filter_NewFrameHandler(object sender, NewFrameEvent e) {
 			UMat old = rawData;
 			rawData = e.transfer;
-			if (camView != null) camView.Display_Image(rawData);
 			if (old != null) old.Dispose();
 			this.LoadImageToEnd(rawData);
 		}
