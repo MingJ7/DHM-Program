@@ -20,7 +20,7 @@ namespace DHM_Main {
 		internal Point fTSelRoiMaxMagAbsLoc;
 		Point fFtMouseStartLocation;
 		Point fFtMouseCurrentLocation;
-		private bool showColorMap =true;
+		private bool showColorMap =false;
 
 		public event EventHandler<Rect_Changed> Rect_Changed_Hdl;
 		public FTView() {
