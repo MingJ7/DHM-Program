@@ -287,16 +287,16 @@ namespace DHM_Main
 		public bool Auto_Checked() {
 			return AutoCheck.Checked;
 		}
-		public void Display_Image(Emgu.CV.UMat inImage) {
+		public void Display_Image(UMat inImage) {
 			//if inImage is empty, do nothing
-			if (inImage == null) return;
+			if (inImage.IsEmpty) return;
 			else {
 				//If Function is called on non-UI thread
 				if (Display.InvokeRequired) {
 					if (!showOverExposure && !showColorMap) {
 						if (inImage.Depth == DepthType.Cv8U) {
 							//send img to UI thred for updating
-							Display.Invoke(new MethodInvoker(() => Display_Image(inImage.Clone())));
+							Display.Invoke(new MethodInvoker(() => Display_Image(inImage)));
 						}else{
 							//create a holder
 							UMat dispImg = new UMat();
