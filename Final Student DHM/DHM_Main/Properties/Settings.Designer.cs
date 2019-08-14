@@ -26,9 +26,9 @@ namespace DHM_Main.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("632")]
-        public int Wavelength {
+        public double Wavelength {
             get {
-                return ((int)(this["Wavelength"]));
+                return ((double)(this["Wavelength"]));
             }
             set {
                 this["Wavelength"] = value;
@@ -38,9 +38,9 @@ namespace DHM_Main.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("3750")]
-        public int Pixel_h {
+        public double Pixel_h {
             get {
-                return ((int)(this["Pixel_h"]));
+                return ((double)(this["Pixel_h"]));
             }
             set {
                 this["Pixel_h"] = value;
@@ -50,9 +50,9 @@ namespace DHM_Main.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("3750")]
-        public int Pixel_w {
+        public double Pixel_w {
             get {
-                return ((int)(this["Pixel_w"]));
+                return ((double)(this["Pixel_w"]));
             }
             set {
                 this["Pixel_w"] = value;

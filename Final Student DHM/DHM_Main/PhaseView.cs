@@ -26,7 +26,7 @@ namespace DHM_Main {
 				if (imageBox1.InvokeRequired) {
 					if (!showColorMap) {
 						//send img to UI thred for updating
-						imageBox1.Invoke(new MethodInvoker(() => Display_Image(inImage.Clone())));
+						imageBox1.Invoke(new MethodInvoker(() => Display_Image(inImage)));
 					}
 
 					else if (showColorMap) {
@@ -34,18 +34,12 @@ namespace DHM_Main {
 						UMat dispImg = new UMat(inImage.Size, DepthType.Cv8U, 3);
 						//Make colormap image
 						CvInvoke.ApplyColorMap(inImage, dispImg, ColorMapType.Jet);
-						imageBox1.Invoke(new MethodInvoker(() => Display_Image(dispImg.Clone())));
-						dispImg.Dispose();
+						imageBox1.Invoke(new MethodInvoker(() => Display_Image(dispImg)));
 					}
 				}
 				else {
 					//UI thread only Updates image
-					IImage old = imageBox1.Image;
 					imageBox1.Image = inImage;
-					//imageBox1.Invalidate();
-					//imageBox1.Update();
-					//if there is old image, Dispose of it
-					if (old != null) old.Dispose();
 				}
 			}
 		}

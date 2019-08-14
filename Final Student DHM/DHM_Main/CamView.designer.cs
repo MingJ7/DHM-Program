@@ -31,7 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CamView));
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-			this.Display = new Emgu.CV.UI.ImageBox();
+			this.imageBox1 = new Emgu.CV.UI.ImageBox();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.PlayButton = new System.Windows.Forms.ToolStripButton();
 			this.StopButton = new System.Windows.Forms.ToolStripButton();
@@ -49,7 +49,7 @@
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
 			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
 			this.toolStripContainer1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.Display)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -59,7 +59,7 @@
 			// 
 			// toolStripContainer1.ContentPanel
 			// 
-			this.toolStripContainer1.ContentPanel.Controls.Add(this.Display);
+			this.toolStripContainer1.ContentPanel.Controls.Add(this.imageBox1);
 			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 425);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.toolStripContainer1.LeftToolStripPanelVisible = false;
@@ -74,16 +74,16 @@
 			// 
 			this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
 			// 
-			// Display
+			// imageBox1
 			// 
-			this.Display.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Display.Location = new System.Drawing.Point(0, 0);
-			this.Display.Name = "Display";
-			this.Display.Size = new System.Drawing.Size(800, 425);
-			this.Display.TabIndex = 2;
-			this.Display.TabStop = false;
-			this.Display.OnZoomScaleChange += new System.EventHandler(this.ImageBox_OnZoomScaleChange);
-			this.Display.Resize += new System.EventHandler(this.ImageBox_Resize);
+			this.imageBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.imageBox1.Location = new System.Drawing.Point(0, 0);
+			this.imageBox1.Name = "imageBox1";
+			this.imageBox1.Size = new System.Drawing.Size(800, 425);
+			this.imageBox1.TabIndex = 2;
+			this.imageBox1.TabStop = false;
+			this.imageBox1.OnZoomScaleChange += new System.EventHandler(this.ImageBox_OnZoomScaleChange);
+			this.imageBox1.Resize += new System.EventHandler(this.ImageBox_Resize);
 			// 
 			// toolStrip1
 			// 
@@ -230,7 +230,7 @@
 			this.toolStripContainer1.TopToolStripPanel.PerformLayout();
 			this.toolStripContainer1.ResumeLayout(false);
 			this.toolStripContainer1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.Display)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -261,7 +261,7 @@
         private System.Windows.Forms.ToolStripControlHost ExposureSliderHost;
         private System.Windows.Forms.ToolStripControlHost AutoCheckHost;
         private System.Windows.Forms.CheckBox AutoCheck;
-		private Emgu.CV.UI.ImageBox Display;
+		private Emgu.CV.UI.ImageBox imageBox1;
 		private System.Windows.Forms.ToolStripButton overExposureButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 		private System.Windows.Forms.ToolStripButton resetZoomButton;

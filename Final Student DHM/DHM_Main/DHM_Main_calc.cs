@@ -132,25 +132,25 @@ namespace DHM_Main {
 			if (camView == null) return;
 			Norm4Disp(grayImg, this.dispGray);
 			//TODO: check whether this updates the imageBox's image
-			camView.Display_Image(this.dispGray);
+			camView.Process4Disp(this.dispGray);
 		}
 		public void ProcessNDispMagT(UMat magT) {
 			if (fTView == null) return;
 			Norm4Disp(magT, this.dispMagT, log: true);
 			//magTImageBox.Image = this.dispMagT;
-			fTView.Display_Image(this.dispGray);
+			fTView.Display_Image(this.dispMagT);
 		}
 		public void ProcessNDispMagFo(UMat magFo) {
 			if (intensityView == null) return;
 			Norm4Disp(magFo, this.dispMagFo, log: true);
 			//magFoImageBox.Image = this.dispMagFo;
-			intensityView.Display_Image(this.dispGray);
+			intensityView.Display_Image(this.dispMagFo);
 		}
 		public void ProcessNDispPhFo(UMat phFo) {
 			if (phaseView == null) return;
 			Norm4Disp(phFo, this.dispPhFo);
 			//phFoImageBox.Image = this.dispPhFo;
-			phaseView.Display_Image(this.dispGray);
+			phaseView.Display_Image(this.dispPhFo);
 		}
 		public void ProcessForwardT(UMat inImg, UMat outMagT, UMat outPhT, bool zeroPad = false, bool switchQuadrants = true) {
 			///Accepts a 1-channel image, updates outMagT and outPhT.

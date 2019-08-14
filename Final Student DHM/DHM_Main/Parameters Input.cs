@@ -24,33 +24,33 @@ namespace DHM_Main {
 			bool allclear = true;
 			try {
 				//try to convert the string to value for slider
-				Properties.Settings.Default.Wavelength = Int32.Parse(textBox1.Text);
+				Properties.Settings.Default.Wavelength = Double.Parse(textBox1.Text);
 			}
 			catch (FormatException) {
 				//If fail, set it to previous value
 				textBox1.Text = Properties.Settings.Default.Wavelength.ToString();
 				allclear = false;
-				MessageBox.Show("Please input valid interger for wavelength","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Please input valid Double for wavelength", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			try {
 				//try to convert the string to value for slider
-				Properties.Settings.Default.Pixel_h = Int32.Parse(textBox2.Text);
+				Properties.Settings.Default.Pixel_h = Double.Parse(textBox2.Text);
 			}
 			catch (FormatException) {
 				//If fail, set it to previous value
 				textBox2.Text = Properties.Settings.Default.Pixel_h.ToString();
 				allclear = false;
-				MessageBox.Show("Please input valid interger for pixel height", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Please input valid Double for pixel height", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			try {
 				//try to convert the string to value for slider
-				Properties.Settings.Default.Pixel_w = Int32.Parse(textBox3.Text);
+				Properties.Settings.Default.Pixel_w = Double.Parse(textBox3.Text);
 			}
 			catch (FormatException) {
 				//If fail, set it to previous value
 				textBox3.Text = Properties.Settings.Default.Pixel_w.ToString();
 				allclear = false;
-				MessageBox.Show("Please input valid interger for pixel width", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Please input valid Double for pixel width", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			if (allclear) this.Close();
 		}
