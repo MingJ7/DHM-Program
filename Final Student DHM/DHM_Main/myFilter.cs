@@ -57,13 +57,13 @@ namespace DHM_Main {
 						Mat temp = new Mat(src.FrameType.Size, DepthType.Cv8U, 1, ptr, src.FrameType.BufferSize / src.FrameType.Height);
 						temp.CopyTo(raw);
 						temp.Dispose();
-						NewFrameHandler?.Invoke(this, new NewFrameEvent(raw)));
+						NewFrameHandler?.Invoke(this, new NewFrameEvent(raw));
 					}
 					else if (src.FrameType.Subtype.Equals(TIS.Imaging.MediaSubtypes.Y16)) {
 						Mat temp = new Mat(src.FrameType.Size, DepthType.Cv16U, 1, ptr, src.FrameType.BufferSize / src.FrameType.Height);
 						temp.CopyTo(raw);
 						temp.Dispose();
-						NewFrameHandler?.Invoke(this, new NewFrameEvent(raw)));
+						NewFrameHandler?.Invoke(this, new NewFrameEvent(raw));
 					}
 				}
 			}

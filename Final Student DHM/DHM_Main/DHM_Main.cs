@@ -325,10 +325,8 @@ namespace DHM_Main {
 			vCDProp.RangeValue[VCDIDs.VCDID_Gain] = camView.Slider_Get(CamView.ControlsE.GainS, SliderControls.Value);
 		}
 		private void filter_NewFrameHandler(object sender, NewFrameEvent e) {
-			//update rawData in such a way that at no point in time is it referencing a disposed object
-			UMat old = rawData;
+			//update rawData
 			rawData = e.transfer;
-			if (old != null) old.Dispose();
 			//process image and display processed data in windows
 			this.LoadImageToEnd(rawData);
 		}
