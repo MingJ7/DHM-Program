@@ -207,6 +207,7 @@ namespace DHM_Main {
 			if (icImagingControl1.DeviceValid) icImagingControl1.DeviceFrameFilters.Clear();
 			icImagingControl1.ShowDeviceSettingsDialog();
 			if (icImagingControl1.DeviceValid) {
+				filter.updateCamSize(icImagingControl1.ImageSize, icImagingControl1.VideoFormatCurrent);
 				icImagingControl1.DeviceFrameFilters.Add(icImagingControl1.FrameFilterCreate(filter));
 				UpdateControls();
 				if (camView != null) {
