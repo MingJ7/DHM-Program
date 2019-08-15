@@ -40,12 +40,7 @@ namespace DHM_Main {
 				}
 				else {
 					//UI thread only Updates image
-					IImage old = imageBox1.Image;
 					imageBox1.Image = inImage;
-					//imageBox1.Invalidate();
-					//imageBox1.Update();
-					//if there is old image, Dispose of it
-					if (old != null) old.Dispose();
 				}
 			}
 		}

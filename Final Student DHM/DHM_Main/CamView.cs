@@ -25,6 +25,7 @@ namespace DHM_Main
 		bool showColorMap = false;
 		UMat mat252,mat255;
 		UMat mat65279,mat65535;
+		UMat col_8bit,col_16bit;
 		public enum ControlsE { CameraB, PlayB, StopB, SettingB, SaveB, LoadB, GainS, ExposureS, AutoC };
 		public CamView() {
 			InitializeComponent();
@@ -251,7 +252,7 @@ namespace DHM_Main
 		}
 
 		public void SaveImage(string fileName) {
-			Display.Image.Save(fileName);
+			imageBox1.Image.Save(fileName);
 		}
 
 		public virtual int Slider_Get(ControlsE con, SliderControls part) {
@@ -287,22 +288,20 @@ namespace DHM_Main
 		public bool Auto_Checked() {
 			return AutoCheck.Checked;
 		}
-		public void Display_Image(Emgu.CV.UMat inImage) {
+		public void Process4Disp(UMat inImage) {
 			//if inImage is empty, do nothing
-			if (inImage == null) return;
+			if (inImage.IsEmpty) return;
 			else {
 				//If Function is called on non-UI thread
-				if (Display.InvokeRequired) {
+				if (imageBox1.InvokeRequired) {
 					if (!showOverExposure && !showColorMap) {
 						if (inImage.Depth == DepthType.Cv8U) {
 							//send img to UI thred for updating
-							Display.Invoke(new MethodInvoker(() => Display_Image(inImage.Clone())));
+							imageBox1.Invoke(new MethodInvoker(() => Process4Disp(inImage)));
 						}else{
-							//create a holder
-							UMat dispImg = new UMat();
 							//normalie and store image
-							CvInvoke.CvtColor(inImage, dispImg, ColorConversion.Gray2Bgr);
-							Display.Invoke(new MethodInvoker(() => Display_Image(dispImg)));
+							CvInvoke.CvtColor(inImage, col_16bit, ColorConversion.Gray2Bgr);
+							imageBox1.Invoke(new MethodInvoker(() => Process4Disp(col_16bit)));
 						}
 					}
 					else if(showOverExposure){
@@ -310,53 +309,45 @@ namespace DHM_Main
 							//Create Mask which shows locations of overexposed pixels 
 							UMat mask = new UMat();
 							CvInvoke.InRange(inImage, mat252, mat255, mask);
-							//create holder for Masked image
-							UMat dispImg = new UMat(inImage.Size, DepthType.Cv8U, 3);
 							//Clone inImage with 3 channels (Color) to dispImg to allow color red to be displayed
-							CvInvoke.CvtColor(inImage, dispImg, ColorConversion.Gray2Bgr);
+							CvInvoke.CvtColor(inImage, col_8bit, ColorConversion.Gray2Bgr);
 							//set location of overexposed pixels to red
-							dispImg.SetTo(new MCvScalar(0, 0, 255), mask);
+							col_8bit.SetTo(new MCvScalar(0, 0, 255), mask);
 							mask.Dispose();
-							Display.Invoke(new MethodInvoker(() => Display_Image(dispImg)));
+							imageBox1.Invoke(new MethodInvoker(() => Process4Disp(col_8bit)));
 						}
 						else {
 							//Create Mask which shows locations of overexposed pixels
 							UMat mask = new UMat();
 							CvInvoke.InRange(inImage, mat65279, mat65535, mask);
-							//create holder for Masked image
-							UMat dispImg = new UMat(inImage.Size, DepthType.Cv16U, 3);
 							//Clone inImage with 3 channels (Color) to dispImg to allow color red to be displayed
-							CvInvoke.CvtColor(inImage, dispImg, ColorConversion.Gray2Bgr);
+							CvInvoke.CvtColor(inImage, col_16bit, ColorConversion.Gray2Bgr);
 							//set location of overexposed pixels to red
-							dispImg.SetTo(new MCvScalar(0, 0, 65535), mask);
+							col_16bit.SetTo(new MCvScalar(0, 0, 65535), mask);
 							mask.Dispose();
-							Display.Invoke(new MethodInvoker(() => Display_Image(dispImg)));
+							imageBox1.Invoke(new MethodInvoker(() => Process4Disp(col_16bit)));
 						}
 					}
 					else if(showColorMap){
 						//Create holder for colormapped img
-						UMat dispImg = new UMat(inImage.Size, DepthType.Cv8U, 3);
+						//UMat dispImg = new UMat(inImage.Size, DepthType.Cv8U, 3);
 						if(inImage.Depth==DepthType.Cv16U){
 							//Convert inImg to 8-bit as colormap can only be done on 8-bit images
 							using (UMat temp = new UMat()) {
 								//CvInvoke.Normalize(inImage, temp, 0, 255, normType: NormType.MinMax, dType: DepthType.Cv8U);
 								inImage.ConvertTo(temp, DepthType.Cv8U, 1 / 256.0, 0);
-								CvInvoke.ApplyColorMap(temp, dispImg, ColorMapType.Jet);
+								CvInvoke.ApplyColorMap(temp, col_8bit, ColorMapType.Jet);
 							}
 						}else {
 							//Make colormap image
-							CvInvoke.ApplyColorMap(inImage, dispImg, ColorMapType.Jet);
+							CvInvoke.ApplyColorMap(inImage, col_8bit, ColorMapType.Jet);
 						}
-						Display.Invoke(new MethodInvoker(() => Display_Image(dispImg.Clone())));
-						dispImg.Dispose();
+						imageBox1.Invoke(new MethodInvoker(() => Process4Disp(col_8bit)));
 					}
 				}
 				else {
 					//UI thread only Updates image
-					IImage old = Display.Image;
-					Display.Image = inImage;
-					//if there is old image, Dispose of it
-					if (old != null) old.Dispose();
+					imageBox1.Image = inImage;
 				}
 			}
 		}
@@ -424,10 +415,18 @@ namespace DHM_Main
 			if (mat65535 != null) { mat65535.Dispose(); }
 			mat65535 = new UMat(size, DepthType.Cv8U, 1);
 			mat65535.SetTo(new MCvScalar(65535));
+			col_8bit?.Dispose();
+			col_8bit = new UMat(size, DepthType.Cv8U, 3);
+			col_16bit?.Dispose();
+			col_16bit = new UMat(size, DepthType.Cv16U, 3);
 		}
 		private void CamView_FormClosing(object sender, FormClosingEventArgs e) {
-			if(mat255!=null)mat255.Dispose();
-			if(mat65279!=null) mat65279.Dispose();
+			mat252?.Dispose();
+			mat255?.Dispose();
+			mat65279?.Dispose();
+			mat65535?.Dispose();
+			col_8bit?.Dispose();
+			col_16bit?.Dispose();
 		}
 		private void ColormapButton_Click(object sender, EventArgs e) {
 			ToolStripButton button = (ToolStripButton)sender;
@@ -441,7 +440,7 @@ namespace DHM_Main
 		}
 
 		private void ResetZoomButton_Click(object sender, EventArgs e) {
-			Display.SetZoomScale(1d, new Point(0, 0));
+			imageBox1.SetZoomScale(1d, new Point(0, 0));
 
 		}
 	}

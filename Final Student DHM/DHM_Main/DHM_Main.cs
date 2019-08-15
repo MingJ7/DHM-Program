@@ -207,6 +207,7 @@ namespace DHM_Main {
 			if (icImagingControl1.DeviceValid) icImagingControl1.DeviceFrameFilters.Clear();
 			icImagingControl1.ShowDeviceSettingsDialog();
 			if (icImagingControl1.DeviceValid) {
+				filter.updateCamSize(icImagingControl1.ImageSize, icImagingControl1.VideoFormatCurrent);
 				icImagingControl1.DeviceFrameFilters.Add(icImagingControl1.FrameFilterCreate(filter));
 				UpdateControls();
 				if (camView != null) {
@@ -275,7 +276,6 @@ namespace DHM_Main {
 				try {
 					rawData = new UMat(openFileDialog.FileName, Emgu.CV.CvEnum.ImreadModes.Grayscale);
 					camView.Update_Image_Size(rawData.Size);
-					camView.Display_Image(rawData);
 					LoadImageToEnd(rawData);
 				}
 				catch (ArgumentException) {
@@ -325,10 +325,9 @@ namespace DHM_Main {
 			vCDProp.RangeValue[VCDIDs.VCDID_Gain] = camView.Slider_Get(CamView.ControlsE.GainS, SliderControls.Value);
 		}
 		private void filter_NewFrameHandler(object sender, NewFrameEvent e) {
-			UMat old = rawData;
+			//update rawData
 			rawData = e.transfer;
-			camView?.Display_Image(rawData);
-			if (old != null) old.Dispose();
+			//process image and display processed data in windows
 			this.LoadImageToEnd(rawData);
 		}
 

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using TIS.Imaging;
 using Emgu.CV;
 using System.Diagnostics;
-using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
 
 namespace DHM_Main {
 	class myFilter : TIS.Imaging.FrameFilterImpl {
 		//private Image<Emgu.CV.Structure.Gray,Byte> result;
-		//public Mat temp;
+		public UMat raw;
 		public event EventHandler<NewFrameEvent> NewFrameHandler;
 		public string timeelapse;
 		/*
@@ -56,19 +56,17 @@ namespace DHM_Main {
 				if (ptr.ToPointer() == src.Ptr) {
 					//if input is Y800 format, or 8-bit bit-depth,
 					if (src.FrameType.Subtype.Equals(TIS.Imaging.MediaSubtypes.Y800)) {
-						//create mat header to manage data
-						Mat temp = new Mat(src.FrameType.Size, Emgu.CV.CvEnum.DepthType.Cv8U, 1, ptr, src.FrameType.BufferSize / src.FrameType.Height);
-						//raise event to send umat to newFrame event handler if there exists one
-						NewFrameHandler?.Invoke(this, new NewFrameEvent(temp.GetUMat(Emgu.CV.CvEnum.AccessType.ReadWrite)));
-						//the above creates a new UMat header with its own data 
-						//so we can dispose the Mat header.
+						Mat temp = new Mat(src.FrameType.Size, DepthType.Cv8U, 1, ptr, src.FrameType.BufferSize / src.FrameType.Height);
+						temp.CopyTo(raw);
 						temp.Dispose();
+						NewFrameHandler?.Invoke(this, new NewFrameEvent(raw));
 					}
 					//if input is Y16 format or 16-bit bit-depth,
 					else if (src.FrameType.Subtype.Equals(TIS.Imaging.MediaSubtypes.Y16)) {
-						Mat temp = new Mat(src.FrameType.Size, Emgu.CV.CvEnum.DepthType.Cv16U, 1, ptr, src.FrameType.BufferSize / src.FrameType.Height);
-						NewFrameHandler?.Invoke(this, new NewFrameEvent(temp.GetUMat(Emgu.CV.CvEnum.AccessType.ReadWrite)));
+						Mat temp = new Mat(src.FrameType.Size, DepthType.Cv16U, 1, ptr, src.FrameType.BufferSize / src.FrameType.Height);
+						temp.CopyTo(raw);
 						temp.Dispose();
+						NewFrameHandler?.Invoke(this, new NewFrameEvent(raw));
 					}
 				}
 			}
@@ -77,6 +75,13 @@ namespace DHM_Main {
 			double fps = 1000 / timespan.TotalMilliseconds;
 			timeelapse = fps.ToString();
 			return true;
+		}
+		public void updateCamSize(System.Drawing.Size size, VideoFormat format) {
+			if (format.FrameType.Subtype.Equals(MediaSubtypes.Y800)){
+				raw.Create(size.Height, size.Width, DepthType.Cv8U, 1);
+			} else if (format.FrameType.Subtype.Equals(MediaSubtypes.Y16)){
+				raw.Create(size.Height, size.Width, DepthType.Cv16U, 1);
+			}
 		}
 	}
 	public class NewFrameEvent : EventArgs {

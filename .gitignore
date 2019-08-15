@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Final Student DHM/.vs/
+/Final Student DHM/.vs/Final Student DHM/v16/
+/Final Student DHM/.vs/Final Student DHM/v16/Server/sqlite3/
+/Final Student DHM/DHM_Main/bin/
+/Final Student DHM/DHM_Main/obj/
+**/suo
