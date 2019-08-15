@@ -78,6 +78,12 @@
     <Compile Include="DHM_Main_calc.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayForm.Designer.cs">
+      <DependentUpon>DisplayForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FTView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CamView.resx">
       <DependentUpon>CamView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisplayForm.resx">
+      <DependentUpon>DisplayForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FTView.resx">
       <DependentUpon>FTView.cs</DependentUpon>
