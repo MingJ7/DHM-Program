@@ -67,6 +67,7 @@
 			this.colMapButton.Name = "colMapButton";
 			this.colMapButton.Size = new System.Drawing.Size(23, 22);
 			this.colMapButton.Text = "toolStripButton1";
+			this.colMapButton.Click += new System.EventHandler(this.ColMapButton_Click);
 			// 
 			// resetZoomButton
 			// 

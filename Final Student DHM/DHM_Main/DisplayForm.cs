@@ -15,6 +15,7 @@ namespace DHM_Main {
 	public partial class DisplayForm : Form {
 		bool showColorMap = false;
 		protected UMat disp_1,disp_2;
+		public event EventHandler<EventArgs> ReloadRequiredHandler;
 		~DisplayForm(){
 			disp_1?.Dispose();
 			disp_2?.Dispose();
@@ -46,8 +47,8 @@ namespace DHM_Main {
 				disp_2.Create(size.Height, size.Width, DepthType.Cv8U, 1);
 			}
 		}
-		protected virtual void ColEnabledChanged(bool color){
-			if (color) {
+		protected virtual void ColEnabledChanged(){
+			if (showColorMap) {
 				disp_1.Create(disp_1.Rows, disp_1.Cols, DepthType.Cv8U, 3);
 				disp_2.Create(disp_2.Rows, disp_2.Cols, DepthType.Cv8U, 3);
 			}
@@ -86,7 +87,14 @@ namespace DHM_Main {
 
 			imgBox.SetZoomScale(fitZoomScale, new Point(0, 0));
 		}
-
+		protected virtual void chgToolStripbuttonBG(ToolStripButton button,bool enabled){
+			if (enabled) {
+				colMapButton.BackColor = Color.Chartreuse;
+			}
+			else {
+				colMapButton.BackColor = SystemColors.Control; //used to be GhostWhite
+			}
+		}
 		private void ImageBox_OnZoomScaleChange(object sender, EventArgs e) {
 			/// please have only imageBoxes send events here, 
 			/// and please set imageBoxes' SizeModes to "Normal",
@@ -99,6 +107,14 @@ namespace DHM_Main {
 		private void ResetZoomButton_Click(object sender, EventArgs e) {
 			imageBox1.SetZoomScale(1d, new Point(0, 0));
 		}
+
+		private void ColMapButton_Click(object sender, EventArgs e) {
+			showColorMap = !showColorMap;
+			chgToolStripbuttonBG((ToolStripButton)sender, showColorMap);
+			ColEnabledChanged();
+			ReloadRequiredHandler?.Invoke(this, new EventArgs());
+		}
+
 		private void SaveButton_Click(object sender, EventArgs e) {
 			// Call the save file dialog to enter the file name of the image
 			SaveFileDialog saveFileDialog1 = new SaveFileDialog();
