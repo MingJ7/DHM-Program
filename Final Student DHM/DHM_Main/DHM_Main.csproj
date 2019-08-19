@@ -90,6 +90,12 @@
     <Compile Include="FTView.Designer.cs">
       <DependentUpon>FTView.cs</DependentUpon>
     </Compile>
+    <Compile Include="FTView2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FTView2.Designer.cs">
+      <DependentUpon>FTView2.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputExtensions.cs" />
     <Compile Include="IntensityView.cs">
       <SubType>Form</SubType>
