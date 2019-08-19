@@ -113,11 +113,11 @@
 
 		#endregion
 
-		private System.Windows.Forms.ToolStrip toolStrip1;
-		private System.Windows.Forms.ToolStripButton colMapButton;
-		private Emgu.CV.UI.ImageBox imageBox1;
-		private System.Windows.Forms.ToolStripButton resetZoomButton;
-		private System.Windows.Forms.ToolStripButton saveButton;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		protected System.Windows.Forms.ToolStrip toolStrip1;
+		protected System.Windows.Forms.ToolStripButton colMapButton;
+		protected Emgu.CV.UI.ImageBox imageBox1;
+		protected System.Windows.Forms.ToolStripButton resetZoomButton;
+		protected System.Windows.Forms.ToolStripButton saveButton;
+		protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 	}
 }

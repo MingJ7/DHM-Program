@@ -144,13 +144,13 @@ namespace DHM_Main {
 			if (intensityView == null) return;
 			Norm4Disp(magFo, this.dispMagFo, log: true);
 			//magFoImageBox.Image = this.dispMagFo;
-			intensityView.Display_Image(this.dispMagFo);
+			intensityView.dispImg(this.dispMagFo);
 		}
 		public void ProcessNDispPhFo(UMat phFo) {
 			if (phaseView == null) return;
 			Norm4Disp(phFo, this.dispPhFo);
 			//phFoImageBox.Image = this.dispPhFo;
-			phaseView.Display_Image(this.dispPhFo);
+			phaseView.dispImg(this.dispPhFo);
 		}
 		public void ProcessForwardT(UMat inImg, UMat outMagT, UMat outPhT, bool zeroPad = false, bool switchQuadrants = true) {
 			///Accepts a 1-channel image, updates outMagT and outPhT.

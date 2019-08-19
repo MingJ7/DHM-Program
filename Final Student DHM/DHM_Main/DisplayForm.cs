@@ -13,29 +13,32 @@ using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 namespace DHM_Main {
 	public partial class DisplayForm : Form {
-		bool showColorMap = false;
-		protected UMat disp_1,disp_2;
 		public event EventHandler<EventArgs> ReloadRequiredHandler;
-		~DisplayForm(){
+		protected bool showColorMap = false;
+		protected UMat disp_1 = new UMat(); 
+		protected UMat disp_2 = new UMat();
+		private byte run1disp_1, run1disp_2;
+		~DisplayForm() {
 			disp_1?.Dispose();
 			disp_2?.Dispose();
 		}
 		public DisplayForm() {
 			InitializeComponent();
+			imageBox1.Image = disp_1;
 		}
-		public virtual void dispImg(UMat inImg){
+		public virtual void dispImg(UMat inImg) {
 			UMat toUpdate = imageBox1.Image == disp_1 ? disp_2 : disp_1;
-			if(!showColorMap){
+			if (!showColorMap) {
 				inImg.CopyTo(toUpdate);
-			}else{
-				CvInvoke.ApplyColorMap(inImg, toUpdate, ColorMapType.Jet);
-			}
-			if (imageBox1.InvokeRequired) {
-				imageBox1.Invoke(new MethodInvoker(() => imageBox1.Image = toUpdate));
 			}
 			else {
-				imageBox1.Image = toUpdate;
+				CvInvoke.ApplyColorMap(inImg, toUpdate, ColorMapType.Jet);
 			}
+			if(run1disp_1==0||run1disp_2==0){
+				run1disp_1 = disp_1.Bytes[0];
+				run1disp_2 = disp_2.Bytes[0];
+			}
+			imageBox1.Image = toUpdate;
 		}
 		public virtual void updateImgSize(Size size){
 			if (showColorMap) {

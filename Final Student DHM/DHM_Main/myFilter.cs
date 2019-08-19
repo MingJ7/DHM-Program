@@ -11,7 +11,7 @@ using Emgu.CV.CvEnum;
 namespace DHM_Main {
 	class myFilter : TIS.Imaging.FrameFilterImpl {
 		//private Image<Emgu.CV.Structure.Gray,Byte> result;
-		public UMat raw;
+		public UMat raw = new UMat();
 		public event EventHandler<NewFrameEvent> NewFrameHandler;
 		public string timeelapse;
 		/*

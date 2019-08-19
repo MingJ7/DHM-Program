@@ -124,14 +124,8 @@
     <EmbeddedResource Include="FTView.resx">
       <DependentUpon>FTView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntensityView.resx">
-      <DependentUpon>IntensityView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Parameters Input.resx">
       <DependentUpon>Parameters Input.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PhaseView.resx">
-      <DependentUpon>PhaseView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

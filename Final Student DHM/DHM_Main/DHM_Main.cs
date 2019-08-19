@@ -163,7 +163,6 @@ namespace DHM_Main {
 				if (IsDeviceValid) {
 					camView.Set_Enabled(CamView.ControlsE.PlayB, !icImagingControl1.LiveVideoRunning);
 					camView.Set_Enabled(CamView.ControlsE.StopB, icImagingControl1.LiveVideoRunning);
-					//AspectRatio = CalAspectRatio(icImagingControl1.LiveDisplayWidth, icImagingControl1.LiveDisplayHeight);
 				}
 				camView.Set_Enabled(CamView.ControlsE.SaveB, IsDeviceValid);
 				camView.Set_Enabled(CamView.ControlsE.SettingB, IsDeviceValid);
@@ -210,11 +209,18 @@ namespace DHM_Main {
 				filter.updateCamSize(icImagingControl1.ImageSize, icImagingControl1.VideoFormatCurrent);
 				icImagingControl1.DeviceFrameFilters.Add(icImagingControl1.FrameFilterCreate(filter));
 				UpdateControls();
+				UpdateDispImgSizes(icImagingControl1.ImageSize);
 				if (camView != null) {
 					Update_Sliders();
-					camView.Update_Image_Size(icImagingControl1.ImageSize);
 				}
 			}
+		}
+
+		private void UpdateDispImgSizes(Size imageSize) {
+			camView?.Update_Image_Size(imageSize);
+			//fTView?.updateImgSize(imageSize);
+			intensityView?.updateImgSize(imageSize);
+			phaseView?.updateImgSize(imageSize);
 		}
 
 		/// <summary>
@@ -267,7 +273,7 @@ namespace DHM_Main {
 		private void SaveButton_Click(object sender, EventArgs e) {
 			SaveImage();
 		}
-		private void LoadButton_Click(object sender, EventArgs e) {
+		async private void LoadButton_Click(object sender, EventArgs e) {
 			OpenFileDialog openFileDialog = new OpenFileDialog() {
 				Title = "Open Image File",
 				Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png *.bmp) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.bmp|All files|*.*"
@@ -275,14 +281,15 @@ namespace DHM_Main {
 			if (openFileDialog.ShowDialog() == DialogResult.OK) {
 				try {
 					rawData = new UMat(openFileDialog.FileName, Emgu.CV.CvEnum.ImreadModes.Grayscale);
-					camView.Update_Image_Size(rawData.Size);
-					LoadImageToEnd(rawData);
 				}
 				catch (ArgumentException) {
 					MessageBox.Show("The selected file could not be loaded");
 				}
+				UpdateDispImgSizes(rawData.Size);
+				await Task.Run(()=> LoadImageToEnd(rawData));
+				//Task.Run(()=> LoadImageToEnd(rawData));
+				//LoadImageToEnd(rawData);
 			}
-
 		}
 
 		private void Update_Sliders() {
