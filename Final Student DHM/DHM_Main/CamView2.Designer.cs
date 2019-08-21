@@ -72,7 +72,7 @@
 			// CameraButton
 			// 
 			this.CameraButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.CameraButton.Image = ((System.Drawing.Image)Properties.Resources.F);
+			this.CameraButton.Image = ((System.Drawing.Image)Properties.Resources.Camera_32xLG);
 			this.CameraButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.CameraButton.Name = "CameraButton";
 			this.CameraButton.Size = new System.Drawing.Size(23, 22);
@@ -82,7 +82,7 @@
 			// 
 			this.SettingButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.SettingButton.Enabled = false;
-			this.SettingButton.Image = ((System.Drawing.Image)Properties.Resources.F);
+			this.SettingButton.Image = ((System.Drawing.Image)Properties.Resources.gear_32xLG);
 			this.SettingButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.SettingButton.Name = "SettingButton";
 			this.SettingButton.Size = new System.Drawing.Size(23, 22);
@@ -91,7 +91,7 @@
 			// overExposureButton
 			// 
 			this.overExposureButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.overExposureButton.Image = ((System.Drawing.Image)Properties.Resources.F);
+			this.overExposureButton.Image = ((System.Drawing.Image)Properties.Resources.StatusAnnotations_Warning_16xLG_color);
 			this.overExposureButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.overExposureButton.Name = "overExposureButton";
 			this.overExposureButton.Size = new System.Drawing.Size(23, 22);
@@ -101,7 +101,7 @@
 			// LoadButton
 			// 
 			this.LoadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.LoadButton.Image = ((System.Drawing.Image)Properties.Resources.F);
+			this.LoadButton.Image = ((System.Drawing.Image)Properties.Resources.Folder_Open);
 			this.LoadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.LoadButton.Name = "LoadButton";
 			this.LoadButton.Size = new System.Drawing.Size(23, 22);

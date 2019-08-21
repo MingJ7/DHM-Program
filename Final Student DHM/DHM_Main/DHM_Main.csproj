@@ -147,6 +147,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <None Include="Resources\rounded_Rectangle_16xLG.png" />
+    <None Include="Resources\StatusAnnotations_Warning_16xLG_color.png" />
+    <None Include="Resources\gear_32xLG.png" />
+    <None Include="Resources\Folder_Open.png" />
+    <None Include="Resources\Camera_32xLG.png" />
     <None Include="Resources\I.png" />
     <None Include="Resources\P.png" />
     <None Include="Resources\F.png" />
