@@ -107,15 +107,15 @@
 			this.toolStrip1.Size = new System.Drawing.Size(243, 25);
 			this.toolStrip1.TabIndex = 0;
 			// 
-			// PlayButton
+			// PlayStopButton
 			// 
 			this.PlayButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.PlayButton.Enabled = false;
-			this.PlayButton.Image = ((System.Drawing.Image)(resources.GetObject("PlayButton.Image")));
+			this.PlayButton.Image = ((System.Drawing.Image)(resources.GetObject("PlayStopButton.Image")));
 			this.PlayButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.PlayButton.Name = "PlayButton";
+			this.PlayButton.Name = "PlayStopButton";
 			this.PlayButton.Size = new System.Drawing.Size(23, 22);
-			this.PlayButton.Text = "PlayButton";
+			this.PlayButton.Text = "PlayStopButton";
 			// 
 			// StopButton
 			// 
