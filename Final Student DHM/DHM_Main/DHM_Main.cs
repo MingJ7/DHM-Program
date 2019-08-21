@@ -14,7 +14,7 @@ using System.Windows.Forms.Design;
 namespace DHM_Main {
 	public partial class DHM_Main : Form {
 		CamView camView;
-		FTView fTView;
+		FTView2 fTView;
 		PhaseView phaseView;
 		IntensityView intensityView;
 		Parameters_Input window = new Parameters_Input();
@@ -71,7 +71,7 @@ namespace DHM_Main {
 		}
 		private void ToolStripButton1_Click(object sender, EventArgs e) {
 			if (fTView == null) {
-				fTView = new FTView {
+				fTView = new FTView2 {
 					MdiParent = this
 				};
 				fTView.FormClosing += subFormClosing;
@@ -218,7 +218,7 @@ namespace DHM_Main {
 
 		private void UpdateDispImgSizes(Size imageSize) {
 			camView?.Update_Image_Size(imageSize);
-			//fTView?.updateImgSize(imageSize);
+			fTView?.updateImgSize(imageSize);
 			intensityView?.updateImgSize(imageSize);
 			phaseView?.updateImgSize(imageSize);
 		}

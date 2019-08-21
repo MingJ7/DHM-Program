@@ -24,10 +24,9 @@ namespace DHM_Main {
 		}
 		public DisplayForm() {
 			InitializeComponent();
-			imageBox1.Image = disp_1;
 		}
 		public virtual void dispImg(UMat inImg) {
-			UMat toUpdate = imageBox1.Image == disp_1 ? disp_2 : disp_1;
+			UMat toUpdate = (imageBox1.Image == disp_1) ? disp_2 : disp_1;
 			if (!showColorMap) {
 				inImg.CopyTo(toUpdate);
 			}

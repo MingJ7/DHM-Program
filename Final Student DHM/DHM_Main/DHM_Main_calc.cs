@@ -138,7 +138,7 @@ namespace DHM_Main {
 			if (fTView == null) return;
 			Norm4Disp(magT, this.dispMagT, log: true);
 			//magTImageBox.Image = this.dispMagT;
-			fTView.Display_Image(this.dispMagT);
+			fTView.dispImg(this.dispMagT);
 		}
 		public void ProcessNDispMagFo(UMat magFo) {
 			if (intensityView == null) return;

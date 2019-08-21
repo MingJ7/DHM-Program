@@ -84,12 +84,6 @@
     <Compile Include="DisplayForm.Designer.cs">
       <DependentUpon>DisplayForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FTView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FTView.Designer.cs">
-      <DependentUpon>FTView.cs</DependentUpon>
-    </Compile>
     <Compile Include="FTView2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,9 +120,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DisplayForm.resx">
       <DependentUpon>DisplayForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FTView.resx">
-      <DependentUpon>FTView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Parameters Input.resx">
       <DependentUpon>Parameters Input.cs</DependentUpon>
