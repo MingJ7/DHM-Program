@@ -17,11 +17,11 @@ namespace DHM_Main {
 	public partial class CamView2 : DisplayForm {
 		bool showOverExposure = false;
 		UMat mat252, mat255;
-		UMat mat65279, mat65535;
-		UMat col_8bit, col_16bit;
-		public enum ControlsE { CameraB, PlayB, StopB, SettingB, SaveB, LoadB, GainS, ExposureS, AutoC };
+		public enum ControlsE { CameraB, PlayB, SettingB, SaveB, LoadB, GainS, ExposureS, AutoC };
 		public CamView2() {
 			InitializeComponent();
+			mat252 = new UMat();
+			mat255 = new UMat();
 		}
 
 		public virtual void Add_event(ControlsE con, EventHandler @event) {
@@ -175,27 +175,16 @@ namespace DHM_Main {
 		}
 		public override void dispImg(UMat inImg) {
 			if (!showOverExposure) base.dispImg(inImg);
-			else{
-				if (inImg.Depth == DepthType.Cv8U) {
-					//Create Mask which shows locations of overexposed pixels 
-					UMat mask = new UMat();
-					CvInvoke.InRange(inImg, mat252, mat255, mask);
-					//Clone inImage with 3 channels (Color) to dispImg to allow color red to be displayed
-					CvInvoke.CvtColor(inImg, col_8bit, ColorConversion.Gray2Bgr);
-					//set location of overexposed pixels to red
-					col_8bit.SetTo(new MCvScalar(0, 0, 255), mask);
-					mask.Dispose();
-				}
-				else {
-					//Create Mask which shows locations of overexposed pixels
-					UMat mask = new UMat();
-					CvInvoke.InRange(inImg, mat65279, mat65535, mask);
-					//Clone inImage with 3 channels (Color) to dispImg to allow color red to be displayed
-					CvInvoke.CvtColor(inImg, col_16bit, ColorConversion.Gray2Bgr);
-					//set location of overexposed pixels to red
-					col_16bit.SetTo(new MCvScalar(0, 0, 65535), mask);
-					mask.Dispose();
-				}
+			else {
+				UMat toUpdate = (imageBox1.Image == disp_1) ? disp_2 : disp_1;
+				//Create Mask which shows locations of overexposed pixels 
+				UMat mask = new UMat();
+				CvInvoke.InRange(inImg, mat252, mat255, mask);
+				//Clone inImage with 3 channels (Color) to dispImg to allow color red to be displayed
+				CvInvoke.CvtColor(inImg, toUpdate, ColorConversion.Gray2Bgr);
+				//set location of overexposed pixels to red
+				toUpdate.SetTo(new MCvScalar(0, 0, 255), mask);
+				mask.Dispose();
 			}
 		}
 		public override void updateImgSize(Size size) {
@@ -204,10 +193,10 @@ namespace DHM_Main {
 			mat252.SetTo(new MCvScalar(252));
 			mat255.Create(size.Height, size.Width, DepthType.Cv8U, 1);
 			mat255.SetTo(new MCvScalar(255));
-			mat65279.Create(size.Height, size.Width, DepthType.Cv16U, 1);
-			mat65279.SetTo(new MCvScalar(65279));
-			mat65535.Create(size.Height, size.Width, DepthType.Cv16U, 1);
-			mat65535.SetTo(new MCvScalar(65535));
+		}
+		public void UpdatePlayStopButton(ref bool VideoRunning){
+			if (VideoRunning) PlayStopButton.Image = Properties.Resources.STOP;
+			else PlayStopButton.Image = Properties.Resources.NEXT;
 		}
 		protected override void ColEnabledChanged() {
 			if (showColorMap||showOverExposure) {
@@ -240,4 +229,5 @@ namespace DHM_Main {
 			chgToolStripbuttonBG(button, showOverExposure);
 		}
 	}
+	public enum SliderControls { Maximum, Minimum, Value, TickFrequency };
 }

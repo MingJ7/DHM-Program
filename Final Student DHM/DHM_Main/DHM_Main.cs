@@ -13,7 +13,7 @@ using System.Windows.Forms.Design;
 
 namespace DHM_Main {
 	public partial class DHM_Main : Form {
-		CamView camView;
+		CamView2 camView;
 		FTView2 fTView;
 		PhaseView phaseView;
 		IntensityView intensityView;
@@ -40,7 +40,7 @@ namespace DHM_Main {
 		}
 		private void Camera_View_button_Click(object sender, EventArgs e) {
 			if (camView == null) {
-				camView = new CamView {
+				camView = new CamView2 {
 					MdiParent = this
 				};
 				camView.FormClosing += subFormClosing;
@@ -58,16 +58,14 @@ namespace DHM_Main {
 			camView = null;
 		}
 		private void AddCamViewEvents() {
-			camView.Add_event(CamView.ControlsE.AutoC, AutoCheck_CheckedChanged);
-			camView.Add_event(CamView.ControlsE.PlayB, PlayButton_Click);
-			camView.Add_event(CamView.ControlsE.StopB, StopButton_Click);
-			camView.Add_event(CamView.ControlsE.CameraB, CameraButton_Click);
-			camView.Add_event(CamView.ControlsE.SettingB, SettingButton_Click);
-			camView.Add_event(CamView.ControlsE.SaveB, SaveButton_Click);
-			camView.Add_event(CamView.ControlsE.LoadB, LoadButton_Click);
+			camView.Add_event(CamView2.ControlsE.AutoC, AutoCheck_CheckedChanged);
+			camView.Add_event(CamView2.ControlsE.PlayB, PlayStopButton_Click);
+			camView.Add_event(CamView2.ControlsE.CameraB, CameraButton_Click);
+			camView.Add_event(CamView2.ControlsE.SettingB, SettingButton_Click);
+			camView.Add_event(CamView2.ControlsE.LoadB, LoadButton_Click);
 			//Added AND Removed in UpdateSliders
-			//camView.Add_event(CamView.ControlsE.GainS, GainSlider_ValueChanged);
-			//camView.Add_event(CamView.ControlsE.ExposureS, ExposureSlider_ValueChanged);
+			//camView.Add_event(CamView2.ControlsE.GainS, GainSlider_ValueChanged);
+			//camView.Add_event(CamView2.ControlsE.ExposureS, ExposureSlider_ValueChanged);
 		}
 		private void ToolStripButton1_Click(object sender, EventArgs e) {
 			if (fTView == null) {
@@ -137,18 +135,15 @@ namespace DHM_Main {
 			if (icImagingControl1.DeviceValid) {
 				if (vCDProp.AutoAvailable(TIS.Imaging.VCDIDs.VCDID_Gain)) {
 					vCDProp.Automation[TIS.Imaging.VCDIDs.VCDID_Gain] = camView.Auto_Checked();
-					camView.Slider_Set(CamView.ControlsE.GainS, SliderControls.Value, vCDProp.RangeValue[TIS.Imaging.VCDIDs.VCDID_Gain]);
-					camView.Set_Enabled(CamView.ControlsE.GainS, !camView.Auto_Checked());
+					camView.Slider_Set(CamView2.ControlsE.GainS, SliderControls.Value, vCDProp.RangeValue[TIS.Imaging.VCDIDs.VCDID_Gain]);
+					camView.Set_Enabled(CamView2.ControlsE.GainS, !camView.Auto_Checked());
 				}
 				if (vCDProp.AutoAvailable(TIS.Imaging.VCDIDs.VCDID_Exposure)) {
 					vCDProp.Automation[TIS.Imaging.VCDIDs.VCDID_Exposure] = camView.Auto_Checked();
-					camView.Slider_Set(CamView.ControlsE.ExposureS, SliderControls.Value, vCDProp.RangeValue[TIS.Imaging.VCDIDs.VCDID_Exposure]);
-					camView.Set_Enabled(CamView.ControlsE.ExposureS, !camView.Auto_Checked());
+					camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.Value, vCDProp.RangeValue[TIS.Imaging.VCDIDs.VCDID_Exposure]);
+					camView.Set_Enabled(CamView2.ControlsE.ExposureS, !camView.Auto_Checked());
 				}
 			}
-		}
-		private void PlayButton_Click(object sender, EventArgs e) {
-			StartLiveVideo();
 		}
 		private void CameraButton_Click(object sender, EventArgs e) {
 			SelectDevice();
@@ -157,16 +152,13 @@ namespace DHM_Main {
 		private void UpdateControls() {
 			bool IsDeviceValid = icImagingControl1.DeviceValid;
 			if (camView != null) {
-				camView.Set_Enabled(CamView.ControlsE.PlayB, IsDeviceValid);
-				camView.Set_Enabled(CamView.ControlsE.StopB, IsDeviceValid);
+				camView.Set_Enabled(CamView2.ControlsE.PlayB, IsDeviceValid);
 
-				if (IsDeviceValid) {
-					camView.Set_Enabled(CamView.ControlsE.PlayB, !icImagingControl1.LiveVideoRunning);
-					camView.Set_Enabled(CamView.ControlsE.StopB, icImagingControl1.LiveVideoRunning);
-				}
-				camView.Set_Enabled(CamView.ControlsE.SaveB, IsDeviceValid);
-				camView.Set_Enabled(CamView.ControlsE.SettingB, IsDeviceValid);
-				camView.Set_Enabled(CamView.ControlsE.AutoC, IsDeviceValid);
+				camView.Set_Enabled(CamView2.ControlsE.PlayB, IsDeviceValid);
+				camView.Set_Enabled(CamView2.ControlsE.SaveB, IsDeviceValid);
+				camView.Set_Enabled(CamView2.ControlsE.SettingB, IsDeviceValid);
+				camView.Set_Enabled(CamView2.ControlsE.AutoC, IsDeviceValid);
+				camView.UpdatePlayStopButton(ref videoMode);
 			}
 			playStopButton.Enabled = IsDeviceValid;
 		}
@@ -176,12 +168,8 @@ namespace DHM_Main {
 				icImagingControl1.LiveStart();
 				videoMode = true;
 				playStopButton.Image = Properties.Resources.STOP;
+				camView?.UpdatePlayStopButton(ref videoMode);
 				camSelButton.Enabled = false;
-				if (camView != null) {
-					camView.Set_Enabled(CamView.ControlsE.PlayB, false);
-					camView.Set_Enabled(CamView.ControlsE.StopB, true);
-					camView.Set_Enabled(CamView.ControlsE.CameraB, false);
-				}
 			}
 		}
 
@@ -217,7 +205,7 @@ namespace DHM_Main {
 		}
 
 		private void UpdateDispImgSizes(Size imageSize) {
-			camView?.Update_Image_Size(imageSize);
+			camView?.updateImgSize(imageSize);
 			fTView?.updateImgSize(imageSize);
 			intensityView?.updateImgSize(imageSize);
 			phaseView?.updateImgSize(imageSize);
@@ -235,43 +223,8 @@ namespace DHM_Main {
 			}
 		}
 
-		/// <summary>
-		/// SaveImage
-		///
-		/// Snap (capture) an image from the video stream and save it to harddisk.
-		/// </summary>
-		private void SaveImage() {
-			// Call the save file dialog to enter the file name of the image
-			SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-			saveFileDialog1.Filter = "Image files(*.jpg, *.jpeg, *.jpe, *.jfif, *.png *.bmp) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.bmp | All files | *.* ";
-			saveFileDialog1.FilterIndex = 1;
-			saveFileDialog1.RestoreDirectory = true;
-
-			if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
-				// Save the image.
-				camView.SaveImage(saveFileDialog1.FileName);
-			}
-
-		}
-
-		private async void StopButton_Click(object sender, EventArgs e) {
-			await Task.Run(() => StopLiveVideo());
-			playStopButton.Image = Properties.Resources.NEXT;
-			camSelButton.Enabled = true;
-			videoMode = false;
-			if (camView != null) {
-				camView.Set_Enabled(CamView.ControlsE.PlayB, true);
-				camView.Set_Enabled(CamView.ControlsE.StopB, false);
-				camView.Set_Enabled(CamView.ControlsE.CameraB, true);
-			}
-		}
-
 		private void SettingButton_Click(object sender, EventArgs e) {
 			ShowProperties();
-		}
-
-		private void SaveButton_Click(object sender, EventArgs e) {
-			SaveImage();
 		}
 		async private void LoadButton_Click(object sender, EventArgs e) {
 			OpenFileDialog openFileDialog = new OpenFileDialog() {
@@ -296,19 +249,19 @@ namespace DHM_Main {
 			if (icImagingControl1.DeviceValid) {
 				vCDProp = TIS.Imaging.VCDHelpers.VCDSimpleModule.GetSimplePropertyContainer(icImagingControl1.VCDPropertyItems);
 				//Loading Values into sliders
-				camView.Slider_Set(CamView.ControlsE.GainS, SliderControls.Minimum, vCDProp.RangeMin(VCDIDs.VCDID_Gain));
-				camView.Slider_Set(CamView.ControlsE.GainS, SliderControls.Maximum, vCDProp.RangeMax(VCDIDs.VCDID_Gain));
-				camView.Slider_Set(CamView.ControlsE.GainS, SliderControls.Value, vCDProp.RangeValue[VCDIDs.VCDID_Gain]);
-				camView.Slider_Set(CamView.ControlsE.GainS, SliderControls.TickFrequency, (camView.Slider_Get(CamView.ControlsE.GainS, SliderControls.Maximum) - camView.Slider_Get(CamView.ControlsE.GainS, SliderControls.Minimum) / 10));
-				camView.Add_event(CamView.ControlsE.GainS, GainSlider_ValueChanged);
+				camView.Slider_Set(CamView2.ControlsE.GainS, SliderControls.Minimum, vCDProp.RangeMin(VCDIDs.VCDID_Gain));
+				camView.Slider_Set(CamView2.ControlsE.GainS, SliderControls.Maximum, vCDProp.RangeMax(VCDIDs.VCDID_Gain));
+				camView.Slider_Set(CamView2.ControlsE.GainS, SliderControls.Value, vCDProp.RangeValue[VCDIDs.VCDID_Gain]);
+				camView.Slider_Set(CamView2.ControlsE.GainS, SliderControls.TickFrequency, (camView.Slider_Get(CamView2.ControlsE.GainS, SliderControls.Maximum) - camView.Slider_Get(CamView2.ControlsE.GainS, SliderControls.Minimum) / 10));
+				camView.Add_event(CamView2.ControlsE.GainS, GainSlider_ValueChanged);
 
-				camView.Slider_Set(CamView.ControlsE.ExposureS, SliderControls.Minimum, vCDProp.RangeMin(VCDIDs.VCDID_Exposure));//on our cam is 0.1ms
+				camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.Minimum, vCDProp.RangeMin(VCDIDs.VCDID_Exposure));//on our cam is 0.1ms
 																																 //this.ExposureSlider.Maximum = VCDProp.RangeMax(TIS.Imaging.VCDIDs.VCDID_Exposure);
 																																 //max value on cam is 300s which is bad
-				camView.Slider_Set(CamView.ControlsE.ExposureS, SliderControls.Maximum, 1000); ;//max at 0.1s
-				camView.Slider_Set(CamView.ControlsE.ExposureS, SliderControls.Value, vCDProp.RangeValue[VCDIDs.VCDID_Exposure]);
-				camView.Slider_Set(CamView.ControlsE.ExposureS, SliderControls.TickFrequency, (camView.Slider_Get(CamView.ControlsE.ExposureS, SliderControls.Maximum) - camView.Slider_Get(CamView.ControlsE.ExposureS, SliderControls.Minimum)) / 10);
-				camView.Add_event(CamView.ControlsE.ExposureS, ExposureSlider_ValueChanged);
+				camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.Maximum, 1000); ;//max at 0.1s
+				camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.Value, vCDProp.RangeValue[VCDIDs.VCDID_Exposure]);
+				camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.TickFrequency, (camView.Slider_Get(CamView2.ControlsE.ExposureS, SliderControls.Maximum) - camView.Slider_Get(CamView2.ControlsE.ExposureS, SliderControls.Minimum)) / 10);
+				camView.Add_event(CamView2.ControlsE.ExposureS, ExposureSlider_ValueChanged);
 				if (vCDProp.AutoAvailable(VCDIDs.VCDID_Gain)) {
 					vCDProp.Automation[VCDIDs.VCDID_Gain] = false;
 				}
@@ -317,19 +270,19 @@ namespace DHM_Main {
 				}
 			}
 			else {
-				camView.Set_Enabled(CamView.ControlsE.GainS, false);
-				camView.Remove_Event(CamView.ControlsE.GainS, GainSlider_ValueChanged);
-				camView.Set_Enabled(CamView.ControlsE.ExposureS, false);
-				camView.Remove_Event(CamView.ControlsE.ExposureS, ExposureSlider_ValueChanged);
+				camView.Set_Enabled(CamView2.ControlsE.GainS, false);
+				camView.Remove_Event(CamView2.ControlsE.GainS, GainSlider_ValueChanged);
+				camView.Set_Enabled(CamView2.ControlsE.ExposureS, false);
+				camView.Remove_Event(CamView2.ControlsE.ExposureS, ExposureSlider_ValueChanged);
 			}
 		}
 
 		private void ExposureSlider_ValueChanged(object sender, EventArgs e) {
-			vCDProp.RangeValue[VCDIDs.VCDID_Exposure] = 10 ^ camView.Slider_Get(CamView.ControlsE.ExposureS, SliderControls.Value);
+			vCDProp.RangeValue[VCDIDs.VCDID_Exposure] = 10 ^ camView.Slider_Get(CamView2.ControlsE.ExposureS, SliderControls.Value);
 		}
 
 		private void GainSlider_ValueChanged(object sender, EventArgs e) {
-			vCDProp.RangeValue[VCDIDs.VCDID_Gain] = camView.Slider_Get(CamView.ControlsE.GainS, SliderControls.Value);
+			vCDProp.RangeValue[VCDIDs.VCDID_Gain] = camView.Slider_Get(CamView2.ControlsE.GainS, SliderControls.Value);
 		}
 		private void filter_NewFrameHandler(object sender, NewFrameEvent e) {
 			//update rawData
@@ -420,11 +373,8 @@ namespace DHM_Main {
 				playStopButton.Image = Properties.Resources.NEXT;
 				camSelButton.Enabled = true;
 				videoMode = false;
-				if(camView!=null) {
-					camView.Set_Enabled(CamView.ControlsE.PlayB, true);
-					camView.Set_Enabled(CamView.ControlsE.StopB, false);
-					camView.Set_Enabled(CamView.ControlsE.CameraB, true);
-				}
+				camView?.UpdatePlayStopButton(ref videoMode);
+				camView?.Set_Enabled(CamView2.ControlsE.CameraB, true);
 			}else{
 				StartLiveVideo();
 			}

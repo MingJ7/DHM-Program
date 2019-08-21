@@ -132,7 +132,7 @@ namespace DHM_Main {
 			if (camView == null) return;
 			Norm4Disp(grayImg, this.dispGray);
 			//TODO: check whether this updates the imageBox's image
-			camView.Process4Disp(this.dispGray);
+			camView.dispImg(this.dispGray);
 		}
 		public void ProcessNDispMagT(UMat magT) {
 			if (fTView == null) return;

@@ -75,12 +75,6 @@
     <Compile Include="DHM_Main.Designer.cs">
       <DependentUpon>DHM_Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="CamView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CamView.designer.cs">
-      <DependentUpon>CamView.cs</DependentUpon>
-    </Compile>
     <Compile Include="DHM_Main_calc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,9 +114,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DHM_Main.resx">
       <DependentUpon>DHM_Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CamView.resx">
-      <DependentUpon>CamView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DisplayForm.resx">
       <DependentUpon>DisplayForm.cs</DependentUpon>

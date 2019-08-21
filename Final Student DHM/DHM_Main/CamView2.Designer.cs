@@ -32,7 +32,6 @@
 			this.overExposureButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.LoadButton = new System.Windows.Forms.ToolStripButton();
-			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.resetZoomButton = new System.Windows.Forms.ToolStripButton();
 			this.ControlStrip = new System.Windows.Forms.ToolStrip();
 			this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -46,13 +45,13 @@
 			// 
 			// toolStripContainer1.ContentPanel
 			// 
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 425);
-			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 30);
+			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.toolStripContainer1.LeftToolStripPanelVisible = false;
 			this.toolStripContainer1.RightToolStripPanelVisible = false;
 			this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
 			this.toolStripContainer1.Name = "toolStripContainer1";
-			this.toolStripContainer1.Size = new System.Drawing.Size(800, 450);
+			this.toolStripContainer1.Size = new System.Drawing.Size(800, 50);
 			this.toolStripContainer1.TabIndex = 0;
 			this.toolStripContainer1.Text = "toolStripContainer1";
 			// 
@@ -108,7 +107,16 @@
 			this.LoadButton.Size = new System.Drawing.Size(23, 22);
 			this.LoadButton.Text = "Load Image";
 			this.LoadButton.ToolTipText = "Load Image";
-
+			//
+			//Adding Buttons
+			//
+			this.toolStrip1.Items.Insert(2, this.overExposureButton);
+			this.toolStrip1.Items.Insert(0, this.toolStripSeparator2);
+			this.toolStrip1.Items.Insert(0, this.LoadButton);
+			this.toolStrip1.Items.Insert(0, this.CameraButton);
+			this.toolStrip1.Items.Insert(0, this.SettingButton);
+			this.toolStrip1.Items.Insert(0, this.toolStripSeparator3);
+			this.toolStrip1.Items.Insert(0, this.PlayStopButton);
 			////
 			//SELF GENERATED CODE
 			////
@@ -187,14 +195,10 @@
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
 			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-			// 
-			// toolStripSeparator4
-			// 
-			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
 			//
 			//Form stuff
 			//
+			this.Controls.Add(this.toolStripContainer1);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Text = "CamView2";
@@ -207,7 +211,6 @@
 		private System.Windows.Forms.ToolStripButton CameraButton;
 		private System.Windows.Forms.ToolStripButton SettingButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-		private System.Windows.Forms.ToolStripButton ColormapButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripButton LoadButton;
 		//Self Added
@@ -221,6 +224,5 @@
 		private System.Windows.Forms.ToolStripControlHost AutoCheckHost;
 		private System.Windows.Forms.CheckBox AutoCheck;
 		private System.Windows.Forms.ToolStripButton overExposureButton;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 	}
 }
