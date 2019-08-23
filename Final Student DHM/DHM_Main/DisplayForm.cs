@@ -97,10 +97,10 @@ namespace DHM_Main {
 		}
 		protected virtual void chgToolStripbuttonBG(ToolStripButton button,bool enabled){
 			if (enabled) {
-				colMapButton.BackColor = Color.Chartreuse;
+				button.BackColor = Color.Chartreuse;
 			}
 			else {
-				colMapButton.BackColor = SystemColors.Control; //used to be GhostWhite
+				button.BackColor = SystemColors.Control; //used to be GhostWhite
 			}
 		}
 		private void ImageBox_OnZoomScaleChange(object sender, EventArgs e) {
