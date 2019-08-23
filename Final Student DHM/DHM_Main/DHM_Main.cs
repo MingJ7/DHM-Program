@@ -32,7 +32,7 @@ namespace DHM_Main {
 			Init_ReconSlider();
 			filter.NewFrameHandler += filter_NewFrameHandler;
 		}
-		private void Init_ReconSlider(){
+		private void Init_ReconSlider() {
 			ReconDistSliderHost.tb.Value = 0;
 			ReconDistSliderHost.tb.Minimum = Int32.Parse(ReconMinTxt.Text);
 			ReconDistSliderHost.tb.Maximum = Int32.Parse(ReconMaxTxt.Text);
@@ -45,6 +45,7 @@ namespace DHM_Main {
 				};
 				camView.FormClosing += subFormClosing;
 				camView.FormClosed += camView_FormClosed;
+				camView.AddSaveRawEH(SaveRaw);
 				camView.Show();
 				AddCamViewEvents();
 				UpdateControls();
@@ -75,6 +76,7 @@ namespace DHM_Main {
 				fTView.FormClosing += subFormClosing;
 				fTView.FormClosed += fTView_FormClosed;
 				fTView.Rect_Changed_Hdl += On_Rect_Chg;
+				fTView.AddSaveRawEH(SaveRaw);
 				fTView.Show();
 			}
 			else {
@@ -84,7 +86,7 @@ namespace DHM_Main {
 
 		private void On_Rect_Chg(object sender, Rect_Changed e) {
 			fTSelRoi = e.rectangle;
-			if(!videoMode){
+			if (!videoMode) {
 				SelectAreaToEnd(fTSelRoi, magT, phT);
 				fTView.fTLtdSelRoi = fTLtdSelRoi;
 				fTView.fTSelRoiMaxMagAbsLoc = fTSelRoiMaxMagAbsLoc;
@@ -102,6 +104,7 @@ namespace DHM_Main {
 				};
 				phaseView.FormClosing += subFormClosing;
 				phaseView.FormClosed += phaseView_FormClosed;
+				phaseView.AddSaveRawEH(SaveRaw);
 				phaseView.Show();
 			}
 			else {
@@ -120,6 +123,7 @@ namespace DHM_Main {
 				};
 				intensityView.FormClosing += subFormClosing;
 				intensityView.FormClosed += intensityView_FormClosed;
+				intensityView.AddSaveRawEH(SaveRaw);
 				intensityView.Show();
 			}
 			else {
@@ -239,7 +243,7 @@ namespace DHM_Main {
 					MessageBox.Show("The selected file could not be loaded");
 				}
 				UpdateDispImgSizes(rawData.Size);
-				await Task.Run(()=> LoadImageToEnd(rawData));
+				await Task.Run(() => LoadImageToEnd(rawData));
 				//Task.Run(()=> LoadImageToEnd(rawData));
 				//LoadImageToEnd(rawData);
 			}
@@ -256,8 +260,8 @@ namespace DHM_Main {
 				camView.Add_event(CamView2.ControlsE.GainS, GainSlider_ValueChanged);
 
 				camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.Minimum, vCDProp.RangeMin(VCDIDs.VCDID_Exposure));//on our cam is 0.1ms
-																																 //this.ExposureSlider.Maximum = VCDProp.RangeMax(TIS.Imaging.VCDIDs.VCDID_Exposure);
-																																 //max value on cam is 300s which is bad
+																																  //this.ExposureSlider.Maximum = VCDProp.RangeMax(TIS.Imaging.VCDIDs.VCDID_Exposure);
+																																  //max value on cam is 300s which is bad
 				camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.Maximum, 1000); ;//max at 0.1s
 				camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.Value, vCDProp.RangeValue[VCDIDs.VCDID_Exposure]);
 				camView.Slider_Set(CamView2.ControlsE.ExposureS, SliderControls.TickFrequency, (camView.Slider_Get(CamView2.ControlsE.ExposureS, SliderControls.Maximum) - camView.Slider_Get(CamView2.ControlsE.ExposureS, SliderControls.Minimum)) / 10);
@@ -300,9 +304,9 @@ namespace DHM_Main {
 				icImagingControl1.DeviceFrameFilters.Clear();
 
 				if (camView != null) camView.Close();
-				if(phaseView!=null) phaseView.Close();
-				if(intensityView!=null) intensityView.Close();
-				if(fTView!=null) fTView.Close();
+				if (phaseView != null) phaseView.Close();
+				if (intensityView != null) intensityView.Close();
+				if (fTView != null) fTView.Close();
 
 				rawData.Dispose();
 
@@ -335,10 +339,10 @@ namespace DHM_Main {
 			try {
 				//try to convert the string to value for slider
 				ReconDistSliderHost.tb.Minimum = Int32.Parse(ReconMinTxt.Text);
-			}catch(FormatException){
+			} catch (FormatException) {
 				//If fail, set it to previous value
 				ReconMinTxt.Text = ReconDistSliderHost.tb.Minimum.ToString();
-			}finally{
+			} finally {
 				//if value is below new minimum, set to minimum
 				if (ReconDistSliderHost.tb.Value < ReconDistSliderHost.tb.Minimum) {
 					ReconDistSliderHost.tb.Value = ReconDistSliderHost.tb.Minimum;
@@ -368,26 +372,26 @@ namespace DHM_Main {
 		}
 
 		private async void PlayStopButton_Click(object sender, EventArgs e) {
-			if(icImagingControl1.LiveVideoRunning){
+			if (icImagingControl1.LiveVideoRunning) {
 				await Task.Run(() => StopLiveVideo());
 				playStopButton.Image = Properties.Resources.NEXT;
 				camSelButton.Enabled = true;
 				videoMode = false;
 				camView?.UpdatePlayStopButton(ref videoMode);
 				camView?.Set_Enabled(CamView2.ControlsE.CameraB, true);
-			}else{
+			} else {
 				StartLiveVideo();
 			}
 		}
-		private async void subFormClosing(object sender, FormClosingEventArgs e){
+		private async void subFormClosing(object sender, FormClosingEventArgs e) {
 			Form toClose = (Form)sender;
 			bool running = false;
 			if (e.CloseReason == CloseReason.UserClosing) {
 				running = icImagingControl1.LiveVideoRunning;
 			}
-			if(running){
+			if (running) {
 				e.Cancel = true;
-				await Task.Run(()=>StopLiveVideo());
+				await Task.Run(() => StopLiveVideo());
 				toClose.Close();
 				StartLiveVideo();
 			}
@@ -400,6 +404,42 @@ namespace DHM_Main {
 		private void DHM_Main_Shown(object sender, EventArgs e) {
 			window.ShowDialog();
 			UpdateParameters();
+		}
+		private void SaveRaw(object sender, EventArgs e) {
+			ToolStripButton toolStripButton = (ToolStripButton)sender;
+			Form form = toolStripButton.GetCurrentParent().FindForm();
+			// Call the save file dialog to enter the file name of the image
+			SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+			saveFileDialog1.Filter = "XML files(*.xml) | *.xml";
+			saveFileDialog1.FilterIndex = 1;
+			saveFileDialog1.RestoreDirectory = true;
+
+
+			if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
+				using (Mat mat = new Mat()) {
+					switch (form.Text) {
+						case "CamView2": //rawData.Save(saveFileDialog1.FileName);
+							rawData.CopyTo(mat);
+							break;
+						case "PhaseView": //phFo.Save(saveFileDialog1.FileName);
+							phFo.CopyTo(mat);
+							break;
+						case "FTView1": //magT.Save(saveFileDialog1.FileName);
+							magT.CopyTo(mat);
+							break;
+						case "IntensityView": //magFo.Save(saveFileDialog1.FileName);
+							magFo.CopyTo(mat);
+							break;
+						default:
+							MessageBox.Show("A Error has occur");
+							break;
+					}
+					//XML saving supported only by this
+					using (FileStorage fs = new FileStorage(saveFileDialog1.FileName, FileStorage.Mode.Write)) {
+						fs.Write(mat, "top");
+					}
+				}
+			}
 		}
 	}
 }

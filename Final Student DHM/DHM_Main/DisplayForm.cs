@@ -49,6 +49,12 @@ namespace DHM_Main {
 				disp_2.Create(size.Height, size.Width, DepthType.Cv8U, 1);
 			}
 		}
+		internal virtual void AddSaveRawEH(EventHandler eh){
+			SaveRawButton.Click += eh;
+		}
+		internal virtual void RemoveSaveRawEH(EventHandler eh) {
+			SaveRawButton.Click -= eh;
+		}
 		protected virtual void ColEnabledChanged(){
 			if (showColorMap) {
 				disp_1.Create(disp_1.Rows, disp_1.Cols, DepthType.Cv8U, 3);

@@ -110,7 +110,7 @@
 			//
 			//Adding Buttons
 			//
-			this.toolStrip1.Items.Insert(2, this.overExposureButton);
+			this.toolStrip1.Items.Insert(4, this.overExposureButton);
 			this.toolStrip1.Items.Insert(0, this.toolStripSeparator2);
 			this.toolStrip1.Items.Insert(0, this.LoadButton);
 			this.toolStrip1.Items.Insert(0, this.CameraButton);

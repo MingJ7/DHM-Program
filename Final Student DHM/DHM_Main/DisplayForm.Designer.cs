@@ -26,11 +26,12 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayForm));
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.imageBox1 = new Emgu.CV.UI.ImageBox();
-			this.colMapButton = new System.Windows.Forms.ToolStripButton();
-			this.resetZoomButton = new System.Windows.Forms.ToolStripButton();
 			this.saveButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.resetZoomButton = new System.Windows.Forms.ToolStripButton();
+			this.colMapButton = new System.Windows.Forms.ToolStripButton();
+			this.imageBox1 = new Emgu.CV.UI.ImageBox();
+			this.SaveRawButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
 			this.SuspendLayout();
@@ -39,6 +40,7 @@
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveButton,
+            this.SaveRawButton,
             this.toolStripSeparator1,
             this.resetZoomButton,
             this.colMapButton});
@@ -47,37 +49,6 @@
 			this.toolStrip1.Size = new System.Drawing.Size(800, 25);
 			this.toolStrip1.TabIndex = 0;
 			this.toolStrip1.Text = "toolStrip1";
-			// 
-			// imageBox1
-			// 
-			this.imageBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.imageBox1.Location = new System.Drawing.Point(0, 25);
-			this.imageBox1.Name = "imageBox1";
-			this.imageBox1.Size = new System.Drawing.Size(800, 425);
-			this.imageBox1.TabIndex = 2;
-			this.imageBox1.TabStop = false;
-			this.imageBox1.OnZoomScaleChange += new System.EventHandler(this.ImageBox_OnZoomScaleChange);
-			this.imageBox1.Resize += new System.EventHandler(this.ImageBox_Resize);
-			// 
-			// colMapButton
-			// 
-			this.colMapButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.colMapButton.Image = ((System.Drawing.Image)(resources.GetObject("colMapButton.Image")));
-			this.colMapButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.colMapButton.Name = "colMapButton";
-			this.colMapButton.Size = new System.Drawing.Size(23, 22);
-			this.colMapButton.Text = "toolStripButton1";
-			this.colMapButton.Click += new System.EventHandler(this.ColMapButton_Click);
-			// 
-			// resetZoomButton
-			// 
-			this.resetZoomButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.resetZoomButton.Image = ((System.Drawing.Image)(resources.GetObject("resetZoomButton.Image")));
-			this.resetZoomButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.resetZoomButton.Name = "resetZoomButton";
-			this.resetZoomButton.Size = new System.Drawing.Size(23, 22);
-			this.resetZoomButton.Text = "toolStripButton2";
-			this.resetZoomButton.Click += new System.EventHandler(this.ResetZoomButton_Click);
 			// 
 			// saveButton
 			// 
@@ -93,6 +64,47 @@
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+			// 
+			// resetZoomButton
+			// 
+			this.resetZoomButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.resetZoomButton.Image = ((System.Drawing.Image)(resources.GetObject("resetZoomButton.Image")));
+			this.resetZoomButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.resetZoomButton.Name = "resetZoomButton";
+			this.resetZoomButton.Size = new System.Drawing.Size(23, 22);
+			this.resetZoomButton.Text = "toolStripButton2";
+			this.resetZoomButton.Click += new System.EventHandler(this.ResetZoomButton_Click);
+			// 
+			// colMapButton
+			// 
+			this.colMapButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.colMapButton.Image = ((System.Drawing.Image)(resources.GetObject("colMapButton.Image")));
+			this.colMapButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.colMapButton.Name = "colMapButton";
+			this.colMapButton.Size = new System.Drawing.Size(23, 22);
+			this.colMapButton.Text = "toolStripButton1";
+			this.colMapButton.Click += new System.EventHandler(this.ColMapButton_Click);
+			// 
+			// imageBox1
+			// 
+			this.imageBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.imageBox1.Location = new System.Drawing.Point(0, 25);
+			this.imageBox1.Name = "imageBox1";
+			this.imageBox1.Size = new System.Drawing.Size(800, 425);
+			this.imageBox1.TabIndex = 2;
+			this.imageBox1.TabStop = false;
+			this.imageBox1.OnZoomScaleChange += new System.EventHandler(this.ImageBox_OnZoomScaleChange);
+			this.imageBox1.Resize += new System.EventHandler(this.ImageBox_Resize);
+			// 
+			// SaveRawButton
+			// 
+			this.SaveRawButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.SaveRawButton.Image = ((System.Drawing.Image)(resources.GetObject("SaveRawButton.Image")));
+			this.SaveRawButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.SaveRawButton.Name = "SaveRawButton";
+			this.SaveRawButton.Size = new System.Drawing.Size(23, 22);
+			this.SaveRawButton.Text = "toolStripButton1";
+			this.SaveRawButton.ToolTipText = "Save Raw Data as xml";
 			// 
 			// DisplayForm
 			// 
@@ -119,5 +131,6 @@
 		protected System.Windows.Forms.ToolStripButton resetZoomButton;
 		protected System.Windows.Forms.ToolStripButton saveButton;
 		protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripButton SaveRawButton;
 	}
 }
