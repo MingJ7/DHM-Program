@@ -103,6 +103,9 @@ namespace DHM_Main {
 				button.BackColor = SystemColors.Control; //used to be GhostWhite
 			}
 		}
+		protected void InvokeReload(){
+			ReloadRequiredHandler?.Invoke(this, new EventArgs());
+		}
 		private void ImageBox_OnZoomScaleChange(object sender, EventArgs e) {
 			/// please have only imageBoxes send events here, 
 			/// and please set imageBoxes' SizeModes to "Normal",

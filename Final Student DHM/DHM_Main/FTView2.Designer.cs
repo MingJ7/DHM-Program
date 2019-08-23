@@ -25,6 +25,7 @@
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
 			this.Rect_Button = new System.Windows.Forms.ToolStripButton();
+			this.Weight_Cent_Button = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.Text = "FTView1";
 			// 
@@ -37,6 +38,14 @@
 			this.Rect_Button.Size = new System.Drawing.Size(23, 22);
 			this.Rect_Button.Text = "Rectangle Select";
 			this.Rect_Button.Click += new System.EventHandler(this.FFTRectSelToolStripButton_Click);
+			//
+			// Weight_Cent_Button
+			//
+			this.Weight_Cent_Button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			//this.Weight_Cent_Button.Image = ;
+			this.Weight_Cent_Button.Name = "Weight_Cent_Button";
+			this.Weight_Cent_Button.Size = new System.Drawing.Size(23, 22);
+			this.Weight_Cent_Button.Text = "Weight Centering Button";
 			// 
 			// toolStripSeparator2
 			// 
@@ -46,6 +55,7 @@
 			// toolstrip1 UPDATE
 			//
 			this.toolStrip1.Items.Insert(0, toolStripSeparator2);
+			this.toolStrip1.Items.Insert(0, Weight_Cent_Button);
 			this.toolStrip1.Items.Insert(0, Rect_Button);
 			//
 			// imageBox1 UPDATE
@@ -59,6 +69,7 @@
 		#endregion
 
 		private System.Windows.Forms.ToolStripButton Rect_Button;
+		private System.Windows.Forms.ToolStripButton Weight_Cent_Button;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 
 	}

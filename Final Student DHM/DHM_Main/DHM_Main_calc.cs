@@ -14,6 +14,7 @@ namespace DHM_Main {
 	public partial class DHM_Main : Form {
 
 		bool videoMode = false; //it's either in static image or videoMode mode
+		bool _WeightCentering = false;
 
 		double rDist,
 			   wavelength = Properties.Settings.Default.Wavelength/1000000000.0,
@@ -116,11 +117,6 @@ namespace DHM_Main {
 			else {
 				i.CopyTo(o);
 			}
-		}
-		public void InvertImage(ref UMat img) {
-			UMat tempImg = 255 - img;
-			img.Dispose();
-			img = tempImg;
 		}
 		public void ZeroPadImage(UMat img) {
 			//Pad image for more optimal DFT speed
@@ -245,8 +241,17 @@ namespace DHM_Main {
 				selRoiMaxMagVal = selRoiMaxMagValues[0];
 				selRoiMinMagLoc = selRoiMinMagLocations[0];
 				selRoiMaxMagLoc = selRoiMaxMagLocations[0];
+				if (_WeightCentering) {
+					using (UMat Mask = magSelT.Clone()) {
+						UMat aaaaa = new UMat();
+						//CvInvoke.Threshold(magSelT, aaaaa, selRoiMaxMagVal * 0.5, 255, ThresholdType.Binary);
+						Mask.SetTo(new MCvScalar((long)(selRoiMaxMagVal * 0.3)));
+						CvInvoke.Compare(magSelT, Mask, aaaaa, CmpType.GreaterEqual);
+						Moments m = CvInvoke.Moments(aaaaa,true);
+						selRoiMaxMagLoc = new Point((int)(m.M10/m.M00), (int)(m.M01/m.M00));
+					}
+				}
 			}
-
 			//find 0Hz point in image, which is at the bottom-right of the centre,
 			//because the width and height are even numbers as I cropped them
 			//earlier in SwitchQuadrants(). There's no +1 because coordinates
@@ -560,7 +565,6 @@ namespace DHM_Main {
 			}
 			toolStripLabel1.Text = String.Format("Reconstruction Distance: {0}mm", this.rDist * 1000);
 		}
-
 	}
 }
 

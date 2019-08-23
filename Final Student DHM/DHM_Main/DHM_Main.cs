@@ -45,6 +45,7 @@ namespace DHM_Main {
 				};
 				camView.FormClosing += subFormClosing;
 				camView.FormClosed += camView_FormClosed;
+				camView.ReloadRequiredHandler += Reload_Image;
 				camView.AddSaveRawEH(SaveRaw);
 				camView.Show();
 				AddCamViewEvents();
@@ -76,7 +77,9 @@ namespace DHM_Main {
 				fTView.FormClosing += subFormClosing;
 				fTView.FormClosed += fTView_FormClosed;
 				fTView.Rect_Changed_Hdl += On_Rect_Chg;
+				fTView.ReloadRequiredHandler += Reload_Image;
 				fTView.AddSaveRawEH(SaveRaw);
+				fTView.AddWeightCentEH(Weight_Cent_Button_Click);
 				fTView.Show();
 			}
 			else {
@@ -90,6 +93,8 @@ namespace DHM_Main {
 				SelectAreaToEnd(fTSelRoi, magT, phT);
 				fTView.fTLtdSelRoi = fTLtdSelRoi;
 				fTView.fTSelRoiMaxMagAbsLoc = fTSelRoiMaxMagAbsLoc;
+				ProcessNDispMagT(magT);
+				fTView.Refresh();
 			}
 		}
 
@@ -104,6 +109,7 @@ namespace DHM_Main {
 				};
 				phaseView.FormClosing += subFormClosing;
 				phaseView.FormClosed += phaseView_FormClosed;
+				phaseView.ReloadRequiredHandler += Reload_Image;
 				phaseView.AddSaveRawEH(SaveRaw);
 				phaseView.Show();
 			}
@@ -123,6 +129,7 @@ namespace DHM_Main {
 				};
 				intensityView.FormClosing += subFormClosing;
 				intensityView.FormClosed += intensityView_FormClosed;
+				intensityView.ReloadRequiredHandler += Reload_Image;
 				intensityView.AddSaveRawEH(SaveRaw);
 				intensityView.Show();
 			}
@@ -414,7 +421,6 @@ namespace DHM_Main {
 			saveFileDialog1.FilterIndex = 1;
 			saveFileDialog1.RestoreDirectory = true;
 
-
 			if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
 				using (Mat mat = new Mat()) {
 					switch (form.Text) {
@@ -440,6 +446,43 @@ namespace DHM_Main {
 					}
 				}
 			}
+		}
+		private void Weight_Cent_Button_Click(object sender, EventArgs e){
+			_WeightCentering = !_WeightCentering;
+			ToolStripButton button = (ToolStripButton)sender;
+			if (_WeightCentering) {
+				button.BackColor = Color.Chartreuse;
+			}
+			else {
+				button.BackColor = SystemColors.Control; //used to be GhostWhite
+			}
+			if (!videoMode){
+				LoadImageToEnd(rawData);
+			}
+		}
+		private void Reload_Image(object sender, EventArgs e) {
+			if (videoMode) return;
+			Form form = (Form)sender;
+			using (Mat mat = new Mat()) {
+				switch (form.Text) {
+					case "CamView2":
+						ProcessNDispGray(rawData);
+						break;
+					case "PhaseView":
+						ProcessNDispPhFo(phFo);
+						break;
+					case "FTView1":
+						ProcessNDispMagT(magT);
+						break;
+					case "IntensityView":
+						ProcessNDispMagFo(magFo);
+						break;
+					default:
+						MessageBox.Show("A Error has occur");
+						break;
+				}
+			}
+
 		}
 	}
 }

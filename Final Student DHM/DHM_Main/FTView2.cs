@@ -25,6 +25,14 @@ namespace DHM_Main {
 		public FTView2() {
 			InitializeComponent();
 		}
+		public void AddWeightCentEH(EventHandler eh){
+			Weight_Cent_Button.Click += eh;
+			Weight_Cent_Button.Click += Weight_Cent_Button_Click;
+		}
+
+		private void Weight_Cent_Button_Click(object sender, System.EventArgs e) {
+			Rect_Changed_Hdl?.Invoke(this.imageBox1,new Rect_Changed(fTSelRoi));
+		}
 		/// <summary>
 		/// UPDATE NEEDED
 		/// </summary>
