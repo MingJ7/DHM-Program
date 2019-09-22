@@ -121,6 +121,24 @@
   <data name="Camera_32xLG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Camera_32xLG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Camera_Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Camera Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Check_Processing_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Check Processing View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Colormap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Colormap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crop_Input" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crop Input.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Export_Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Export Image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Export_Raw_Data_as_xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Export Raw Data as xml.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="F" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -132,14 +150,44 @@
         RK5CYII=
 </value>
   </data>
+  <data name="Fit_Image_to_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fit Image to View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Folder_Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder_Open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fourier_Magnitude_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fourier Magnitude View.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gear_32xLG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gear_32xLG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Grayscaled_Input_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Grayscaled Input View.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="I" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\I.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Image_Plane_Magnitude_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Image Plane Magnitude View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Image_Plane_Phase_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Image Plane Phase View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Import_Hologram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Import Hologram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Import_Hologram_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Import Hologram 24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Line_Selection_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Line Selection icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ln_x_1__the_result_before_normalising_for_display" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ln(x+1) the result before normalising for display.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Manual_Centroid_Selection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Manual Centroid Selection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NEXT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NEXT.BMP;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -147,13 +195,46 @@
   <data name="P" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\P.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Reset_Zoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reset Zoom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="rounded_Rectangle_16xLG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rounded_Rectangle_16xLG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Select_Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Select Camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Select_Elliptical_Area" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Select Elliptical Area.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Select_ImagingSource_Camera_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Select ImagingSource Camera 24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Select_Rectangular_Area" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Select Rectangular Area.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Show_Overexposure" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Show Overexposure.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Square_Magnitude" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Square Magnitude.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StatusAnnotations_Warning_16xLG_color" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StatusAnnotations_Warning_16xLG_color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="STOP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\STOP.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Unwrap_Phase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unwrap Phase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2D_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2D View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3D_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3D View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

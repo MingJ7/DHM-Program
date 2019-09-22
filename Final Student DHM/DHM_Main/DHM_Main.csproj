@@ -147,6 +147,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <None Include="Resources\Reset Zoom.png" />
+    <None Include="Resources\Fit Image to View.png" />
+    <None Include="Resources\Export Raw Data as xml.png" />
+    <None Include="Resources\Export Image.png" />
+    <None Include="Resources\Colormap.png" />
+    <None Include="Resources\Unwrap Phase.png" />
+    <None Include="Resources\Line Selection icon.png" />
+    <None Include="Resources\Square Magnitude.png" />
+    <None Include="Resources\ln%28x+1%29 the result before normalising for display.png" />
+    <None Include="Resources\Show Overexposure.png" />
+    <None Include="Resources\Crop Input.png" />
+    <None Include="Resources\Select Rectangular Area.png" />
+    <None Include="Resources\Select Elliptical Area.png" />
+    <None Include="Resources\Manual Centroid Selection.png" />
+    <None Include="Resources\Select ImagingSource Camera 24.png" />
+    <None Include="Resources\Import Hologram 24.png" />
+    <None Include="Resources\Image Plane Phase View.png" />
+    <None Include="Resources\Image Plane Magnitude View.png" />
+    <None Include="Resources\Grayscaled Input View.jpg" />
+    <None Include="Resources\Fourier Magnitude View.bmp" />
+    <None Include="Resources\Check Processing View.png" />
+    <None Include="Resources\3D View.png" />
+    <None Include="Resources\2D View.png" />
+    <None Include="Resources\Select Camera.png" />
+    <None Include="Resources\Camera Settings.png" />
+    <None Include="Resources\Settings.png" />
+    <None Include="Resources\Import Hologram.png" />
     <None Include="Resources\rounded_Rectangle_16xLG.png" />
     <None Include="Resources\StatusAnnotations_Warning_16xLG_color.png" />
     <None Include="Resources\gear_32xLG.png" />
