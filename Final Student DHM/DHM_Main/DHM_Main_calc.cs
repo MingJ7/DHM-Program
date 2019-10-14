@@ -15,6 +15,7 @@ namespace DHM_Main {
 
 		bool videoMode = false; //it's either in static image or videoMode mode
 		bool _WeightCentering = false;
+		bool _ManualCentering = false;
 
 		double rDist,
 			   wavelength = Properties.Settings.Default.Wavelength/1000000000.0,
@@ -230,25 +231,31 @@ namespace DHM_Main {
 			magFoT.Create(magT.Rows, magT.Cols, DepthType.Cv32F, 1);
 			magFoT.SetTo(new MCvScalar(0));
 			magFoT.CopyTo(phFoT);
-
-			using (UMat magSelT = new UMat(magT, selRoi)) {
-				// get the values and locations of maximum and minimum points
-				// for each channel, but we only have 1 channel
-				// so we only use the [0] index.
-				magSelT.MinMax(out double[] selRoiMinMagValues, out double[] selRoiMaxMagValues,
-							   out Point[] selRoiMinMagLocations, out Point[] selRoiMaxMagLocations);
-				selRoiMinMagVal = selRoiMinMagValues[0];
-				selRoiMaxMagVal = selRoiMaxMagValues[0];
-				selRoiMinMagLoc = selRoiMinMagLocations[0];
-				selRoiMaxMagLoc = selRoiMaxMagLocations[0];
-				if (_WeightCentering) {
-					using (UMat Mask = magSelT.Clone()) {
-						UMat aaaaa = new UMat();
-						//CvInvoke.Threshold(magSelT, aaaaa, selRoiMaxMagVal * 0.5, 255, ThresholdType.Binary);
-						Mask.SetTo(new MCvScalar((long)(selRoiMaxMagVal * 0.3)));
-						CvInvoke.Compare(magSelT, Mask, aaaaa, CmpType.GreaterEqual);
-						Moments m = CvInvoke.Moments(aaaaa,true);
-						selRoiMaxMagLoc = new Point((int)(m.M10/m.M00), (int)(m.M01/m.M00));
+			if (_ManualCentering) {
+				selRoiMinMagVal = 0;
+				selRoiMaxMagVal = 0;
+				selRoiMinMagLoc = new Point(0, 0);
+				selRoiMaxMagLoc = fTView.GetManualCent() - (Size)selRoi.Location;
+			}
+			else {
+				using (UMat magSelT = new UMat(magT, selRoi)) {
+					// get the values and locations of maximum and minimum points
+					// for each channel, but we only have 1 channel
+					// so we only use the [0] index.
+					magSelT.MinMax(out double[] selRoiMinMagValues, out double[] selRoiMaxMagValues,
+								   out Point[] selRoiMinMagLocations, out Point[] selRoiMaxMagLocations);
+					selRoiMinMagVal = selRoiMinMagValues[0];
+					selRoiMaxMagVal = selRoiMaxMagValues[0];
+					selRoiMinMagLoc = selRoiMinMagLocations[0];
+					selRoiMaxMagLoc = selRoiMaxMagLocations[0];
+					if (_WeightCentering) {
+						using (UMat Mask = magSelT.Clone()) {
+							UMat aaaaa = new UMat();
+							Mask.SetTo(new MCvScalar((long)(selRoiMaxMagVal * 0.3)));
+							CvInvoke.Compare(magSelT, Mask, aaaaa, CmpType.GreaterEqual);
+							Moments m = CvInvoke.Moments(aaaaa, true);
+							selRoiMaxMagLoc = new Point((int)(m.M10 / m.M00), (int)(m.M01 / m.M00));
+						}
 					}
 				}
 			}
