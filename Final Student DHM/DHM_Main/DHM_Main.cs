@@ -80,6 +80,7 @@ namespace DHM_Main {
 				fTView.ReloadRequiredHandler += Reload_Image;
 				fTView.AddSaveRawEH(SaveRaw);
 				fTView.AddWeightCentEH(Weight_Cent_Button_Click);
+				fTView.AddManualCentEH(Manual_Cent_Button_Click);
 				fTView.Show();
 			}
 			else {
@@ -99,6 +100,7 @@ namespace DHM_Main {
 		}
 
 		private void fTView_FormClosed(object sender, FormClosedEventArgs e) {
+			_ManualCentering = _WeightCentering = false;
 			fTView = null;
 		}
 
@@ -457,6 +459,19 @@ namespace DHM_Main {
 				button.BackColor = SystemColors.Control; //used to be GhostWhite
 			}
 			if (!videoMode){
+				LoadImageToEnd(rawData);
+			}
+		}
+		private void Manual_Cent_Button_Click(object sender, EventArgs e) {
+			_ManualCentering = !_ManualCentering;
+			ToolStripButton button = (ToolStripButton)sender;
+			if (_ManualCentering) {
+				button.BackColor = Color.Chartreuse;
+			}
+			else {
+				button.BackColor = SystemColors.Control; //used to be GhostWhite
+			}
+			if (!videoMode) {
 				LoadImageToEnd(rawData);
 			}
 		}

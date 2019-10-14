@@ -15,12 +15,14 @@ using Emgu.CV.CvEnum;
 namespace DHM_Main {
 	public partial class FTView2 : DisplayForm {
 		bool fFtRectSelMode = false;
+		bool fFtCentSelMode = false;
 		bool fFtMouseDown = false;
 		Rectangle fTSelRoi;
 		internal Rectangle fTLtdSelRoi;
 		internal Point fTSelRoiMaxMagAbsLoc;
 		Point fFtMouseStartLocation;
 		Point fFtMouseCurrentLocation;
+		Point fFtManPoint;
 		public event EventHandler<Rect_Changed> Rect_Changed_Hdl;
 		public FTView2() {
 			InitializeComponent();
@@ -33,6 +35,15 @@ namespace DHM_Main {
 		private void Weight_Cent_Button_Click(object sender, System.EventArgs e) {
 			Rect_Changed_Hdl?.Invoke(this.imageBox1,new Rect_Changed(fTSelRoi));
 		}
+		public void AddManualCentEH(EventHandler eh){
+			Manual_Cent_Button.Click += eh;
+			Manual_Cent_Button.Click += Manual_Cent_Button_Click;
+		}
+
+		private void Manual_Cent_Button_Click(object sender, EventArgs e) {
+			fFtCentSelMode = !fFtCentSelMode;
+		}
+
 		/// <summary>
 		/// UPDATE NEEDED
 		/// </summary>
@@ -60,10 +71,15 @@ namespace DHM_Main {
 			imageBox1.FunctionalMode = option;
 		}
 		private void ImageBox2_MouseDown(object sender, MouseEventArgs e) {
-			if (fFtRectSelMode) {
-				if (e.Button == MouseButtons.Left) {
-					fFtMouseDown = true;
+			if (e.Button == MouseButtons.Left) {
+				fFtMouseDown = true;
+				if (fFtRectSelMode) {
 					fFtMouseStartLocation = e.Location;
+				}
+				else if (fFtCentSelMode) {
+					fFtManPoint = e.Location;
+					fFtManPoint = GetImgBoxImgCoords(imageBox1, fFtManPoint);
+					Rect_Changed_Hdl?.Invoke(this.imageBox1,new Rect_Changed(fTSelRoi));
 				}
 			}
 		}
@@ -176,6 +192,9 @@ namespace DHM_Main {
 				Location = point - new Size(1, 1),
 				Size = new Size(2, 2)
 			};
+		}
+		public Point GetManualCent(){
+			return fFtManPoint;
 		}
 	}
 	public class Rect_Changed : EventArgs {
