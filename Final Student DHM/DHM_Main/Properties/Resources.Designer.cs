@@ -153,16 +153,6 @@ namespace DHM_Main.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap F {
-            get {
-                object obj = ResourceManager.GetObject("F", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Fit_Image_to_View {
             get {
                 object obj = ResourceManager.GetObject("Fit_Image_to_View", resourceCulture);
@@ -206,16 +196,6 @@ namespace DHM_Main.Properties {
         internal static System.Drawing.Bitmap Grayscaled_Input_View {
             get {
                 object obj = ResourceManager.GetObject("Grayscaled_Input_View", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap I {
-            get {
-                object obj = ResourceManager.GetObject("I", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -296,16 +276,6 @@ namespace DHM_Main.Properties {
         internal static System.Drawing.Bitmap NEXT {
             get {
                 object obj = ResourceManager.GetObject("NEXT", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap P {
-            get {
-                object obj = ResourceManager.GetObject("P", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

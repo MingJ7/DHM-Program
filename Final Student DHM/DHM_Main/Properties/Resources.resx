@@ -139,17 +139,6 @@
   <data name="Export_Raw_Data_as_xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Export Raw Data as xml.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="F" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAABGdBTUEAALGPC/xhBQAAAOhJREFUSEvt
-        0y0KhEAch2G/D2AwiCDYDBsMlj2Ch9DrGAQPsBhEPIGXECwGq3EtCgaxiOAaps04f8OKIPP0Hy86M9x2
-        MRYA3ReYpqlt2+qEYRiWZUEzzGGgLEvf93me56hkWc7zfG+gGQYICIIgSZKu67Ztv0gcxymKYhxHNMPA
-        AcMwoihqmuZ7YJ7ndV3RDAMERFE0TTNJEspPoGMB0OMD+zVVVTUIgjiOP5gsy+q63q8p2pAAAfpL1jQt
-        DMOu69CGBP4CRVEsy3Jd943xPC9N077v0Ybk8YfMAixwwn2Bf2EB0MWBbfsBhcOv+MtQ/McAAAAASUVO
-        RK5CYII=
-</value>
-  </data>
   <data name="Fit_Image_to_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fit Image to View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -164,9 +153,6 @@
   </data>
   <data name="Grayscaled_Input_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Grayscaled Input View.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="I" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\I.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Image_Plane_Magnitude_View" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Image Plane Magnitude View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -191,9 +177,6 @@
   </data>
   <data name="NEXT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NEXT.BMP;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="P" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\P.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Reset_Zoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Reset Zoom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -179,9 +179,6 @@
     <None Include="Resources\gear_32xLG.png" />
     <None Include="Resources\Folder_Open.png" />
     <None Include="Resources\Camera_32xLG.png" />
-    <None Include="Resources\I.png" />
-    <None Include="Resources\P.png" />
-    <None Include="Resources\F.png" />
     <None Include="Resources\STOP.bmp" />
     <None Include="Resources\NEXT.BMP" />
   </ItemGroup>

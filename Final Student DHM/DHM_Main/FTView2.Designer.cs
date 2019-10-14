@@ -32,7 +32,7 @@
 			// Rect_Button
 			// 
 			this.Rect_Button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.Rect_Button.Image = ((System.Drawing.Image)(Properties.Resources.rounded_Rectangle_16xLG));
+			this.Rect_Button.Image = global::DHM_Main.Properties.Resources.Select_Rectangular_Area;
 			this.Rect_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.Rect_Button.Name = "Rect_Button";
 			this.Rect_Button.Size = new System.Drawing.Size(23, 22);

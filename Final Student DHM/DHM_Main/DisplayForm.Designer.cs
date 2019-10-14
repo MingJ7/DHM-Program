@@ -53,7 +53,7 @@
 			// saveButton
 			// 
 			this.saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.saveButton.Image = ((System.Drawing.Image)(resources.GetObject("saveButton.Image")));
+			this.saveButton.Image = global::DHM_Main.Properties.Resources.Export_Image;
 			this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(23, 22);
@@ -68,7 +68,7 @@
 			// resetZoomButton
 			// 
 			this.resetZoomButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.resetZoomButton.Image = ((System.Drawing.Image)(resources.GetObject("resetZoomButton.Image")));
+			this.resetZoomButton.Image = global::DHM_Main.Properties.Resources.Reset_Zoom;
 			this.resetZoomButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.resetZoomButton.Name = "resetZoomButton";
 			this.resetZoomButton.Size = new System.Drawing.Size(23, 22);
@@ -78,7 +78,7 @@
 			// colMapButton
 			// 
 			this.colMapButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.colMapButton.Image = ((System.Drawing.Image)(resources.GetObject("colMapButton.Image")));
+			this.colMapButton.Image = global::DHM_Main.Properties.Resources.Colormap;
 			this.colMapButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.colMapButton.Name = "colMapButton";
 			this.colMapButton.Size = new System.Drawing.Size(23, 22);
@@ -99,7 +99,7 @@
 			// SaveRawButton
 			// 
 			this.SaveRawButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.SaveRawButton.Image = ((System.Drawing.Image)(resources.GetObject("SaveRawButton.Image")));
+			this.SaveRawButton.Image = global::DHM_Main.Properties.Resources.Export_Raw_Data_as_xml;
 			this.SaveRawButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.SaveRawButton.Name = "SaveRawButton";
 			this.SaveRawButton.Size = new System.Drawing.Size(23, 22);

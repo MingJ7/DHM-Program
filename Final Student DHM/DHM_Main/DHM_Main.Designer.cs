@@ -78,7 +78,7 @@
 			// Camera_View_button
 			// 
 			this.Camera_View_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.Camera_View_button.Image = ((System.Drawing.Image)(resources.GetObject("Camera_View_button.Image")));
+			this.Camera_View_button.Image = global::DHM_Main.Properties.Resources.Camera_32xLG;
 			this.Camera_View_button.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.Camera_View_button.Name = "Camera_View_button";
 			this.Camera_View_button.Size = new System.Drawing.Size(23, 25);
@@ -88,7 +88,7 @@
 			// FTView_Button
 			// 
 			this.FTView_Button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.FTView_Button.Image = global::DHM_Main.Properties.Resources.F;
+			this.FTView_Button.Image = global::DHM_Main.Properties.Resources.Fourier_Magnitude_View;
 			this.FTView_Button.ImageTransparentColor = System.Drawing.Color.White;
 			this.FTView_Button.Name = "FTView_Button";
 			this.FTView_Button.Size = new System.Drawing.Size(23, 25);
@@ -98,7 +98,7 @@
 			// PhaseView_Button
 			// 
 			this.PhaseView_Button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.PhaseView_Button.Image = global::DHM_Main.Properties.Resources.P;
+			this.PhaseView_Button.Image = global::DHM_Main.Properties.Resources.Image_Plane_Phase_View;
 			this.PhaseView_Button.ImageTransparentColor = System.Drawing.Color.White;
 			this.PhaseView_Button.Name = "PhaseView_Button";
 			this.PhaseView_Button.Size = new System.Drawing.Size(23, 25);
@@ -108,7 +108,7 @@
 			// IntensityView_Button
 			// 
 			this.IntensityView_Button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.IntensityView_Button.Image = global::DHM_Main.Properties.Resources.I;
+			this.IntensityView_Button.Image = global::DHM_Main.Properties.Resources.Image_Plane_Magnitude_View;
 			this.IntensityView_Button.ImageTransparentColor = System.Drawing.Color.White;
 			this.IntensityView_Button.Name = "IntensityView_Button";
 			this.IntensityView_Button.Size = new System.Drawing.Size(23, 25);
